@@ -7,12 +7,6 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-CLAVES_PERMITIDAS = [
-    os.environ.get("C_PRE_CODIGO", "CPRE2026").strip().upper(),
-    "CPRE2026",
-    "VIP100",
-]
-
 PUERTO_SERVIDOR = int(os.environ.get("PORT", 5000))
 HOST_SERVIDOR = os.environ.get("HOST", "0.0.0.0")
 MODELO_GEMINI = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
@@ -1040,10 +1034,6 @@ def compilar_idioma(cfg):
 
 BASE_CURSOS = {item["nombre"]: compilar_idioma(item) for item in IDIOMAS_CONFIG}
 
-def validar_clave_usuario(clave_recibida):
-    limpia = (clave_recibida or "").strip().upper()
-    return limpia in CLAVES_PERMITIDAS
-
 def responder_consulta_idioma(idioma, pregunta, modo="profesor"):
     curso = BASE_CURSOS.get(idioma) or BASE_CURSOS["Inglés"]
     texto = (pregunta or "").strip()
@@ -1132,20 +1122,11 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 .bienvenida-caja { font-size: 24px; font-weight: 900; text-transform: uppercase; border-top: 2px solid #ffffff; border-bottom: 2px solid #ffffff; padding: 14px 10px; margin-bottom: 10px; color: #ffffff; }
 .creacion-sub { font-size: 14px; font-weight: 600; color: #d4d4d8; letter-spacing: 0.8px; margin-bottom: 16px; }
 .dueno-corner { position: fixed; right: 12px; bottom: 8px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #a1a1aa; background: #09090b; padding: 2px 6px; z-index: 35; }
-.error-banner { color: #ffffff; background: #27272a; border: 1px solid #71717a; padding: 8px 12px; margin-top: 10px; font-size: 13px; font-weight: 700; max-width: 320px; width: 100%; }
 </style>
 </head>
 <body>
 
-<div id="viewAcceso" class="modal-screen">
-    <div style="font-size:14px;font-weight:800;letter-spacing:1px;margin-bottom:8px;color:#ffffff">C-PRE "LENGUAJES" · ACCESO</div>
-    <div style="font-size:12px;color:#a1a1aa;margin-bottom:10px">Escriba la clave de acceso (ejemplo: CPRE2026 o VIP100)</div>
-    <input type="text" id="inputClave" placeholder="Escriba su clave aquí..." autocapitalize="characters" autocorrect="off" style="max-width:320px">
-    <button type="button" id="btnEntrarAcceso" onclick="validarEntradaDirecta()" style="max-width:320px">ENTRAR</button>
-    <div id="errorClave" class="error-banner hidden-view">Clave inválida. Escriba CPRE2026 o VIP100.</div>
-</div>
-
-<div id="viewBienvenida" class="modal-screen hidden-view">
+<div id="viewBienvenida" class="modal-screen">
     <div class="bienvenida-caja">BIENVENIDO A C-PRE "LENGUAJES"</div>
     <div class="creacion-sub">Creaciones de Celso</div>
     <div id="lblCuenta" style="font-size:13px;color:#a1a1aa">Iniciando...</div>
@@ -1225,7 +1206,6 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 <div class="dueno-corner">DUEÑO CELSO</div>
 
 <script id="datosCursosJson" type="application/json">__CURSOS_JSON__</script>
-<script id="datosClavesJson" type="application/json">__CLAVES_JSON__</script>
 <script id="datosNoticiasJson" type="application/json">__NOTICIAS_JSON__</script>
 <script id="datosTacticasJson" type="application/json">__TACTICAS_JSON__</script>
 <script id="datosTrucosJson" type="application/json">__TRUCOS_JSON__</script>
@@ -1243,7 +1223,6 @@ function leerJsonSeguro(idElemento, respaldo) {
 }
 
 var CURSOS = leerJsonSeguro("datosCursosJson", {});
-var CLAVES_VALIDAS = leerJsonSeguro("datosClavesJson", ["CPRE2026", "VIP100"]);
 var NOTICIAS = leerJsonSeguro("datosNoticiasJson", []);
 var TACTICAS = leerJsonSeguro("datosTacticasJson", []);
 var TRUCOS = leerJsonSeguro("datosTrucosJson", []);
@@ -1259,28 +1238,11 @@ var estado = {
     ultimaNota: 0
 };
 
-function validarEntradaDirecta() {
-    var campo = document.getElementById("inputClave");
-    var errorEl = document.getElementById("errorClave");
-    var valor = (campo ? campo.value : "").trim().toUpperCase();
-
-    var listaAceptada = Array.isArray(CLAVES_VALIDAS) ? CLAVES_VALIDAS : ["CPRE2026", "VIP100"];
-    var esValida = listaAceptada.indexOf(valor) !== -1 || valor === "CPRE2026" || valor === "VIP100";
-
-    if (!esValida) {
-        errorEl.textContent = "Clave inválida. Escriba CPRE2026 o VIP100.";
-        errorEl.classList.remove("hidden-view");
-        return;
-    }
-
-    errorEl.classList.add("hidden-view");
-    document.getElementById("viewAcceso").classList.add("hidden-view");
-
+function iniciarBienvenidaDirecta() {
     var bienvenida = document.getElementById("viewBienvenida");
-    bienvenida.classList.remove("hidden-view");
-    var seg = 3;
+    var seg = 2;
     var actualizarCuenta = function() {
-        document.getElementById("lblCuenta").textContent = "Cargando... " + seg + "s";
+        document.getElementById("lblCuenta").textContent = "Entrando... " + seg + "s";
     };
     actualizarCuenta();
 
@@ -1536,15 +1498,9 @@ async function enviarConsultaLibre(modo) {
     }
 }
 
-document.getElementById("inputClave").addEventListener("keydown", function(ev) {
-    if (ev.key === "Enter") {
-        ev.preventDefault();
-        validarEntradaDirecta();
-    }
-});
-
 cargarSelectorIdiomas();
 renderizarApp();
+iniciarBienvenidaDirecta();
 </script>
 </body>
 </html>
@@ -1553,32 +1509,21 @@ renderizarApp();
 @app.route("/")
 def index():
     cursos_serializados = json.dumps(BASE_CURSOS, ensure_ascii=False).replace("</", "<\\/")
-    claves_serializadas = json.dumps(CLAVES_PERMITIDAS, ensure_ascii=False).replace("</", "<\\/")
     noticias_serializadas = json.dumps(NOTICIAS_DIARIAS, ensure_ascii=False).replace("</", "<\\/")
     tacticas_serializadas = json.dumps(TACTICAS_DIARIAS, ensure_ascii=False).replace("</", "<\\/")
-    trucos_serializados = json.dumps(TRUCOS_DIARIOS, ensure_ascii=False).replace("</", "<\\/")
+    trucos_serializadas = json.dumps(TRUCOS_DIARIOS, ensure_ascii=False).replace("</", "<\\/")
     niveles_serializados = json.dumps(NIVELES_SISTEMA, ensure_ascii=False).replace("</", "<\\/")
     ordinales_serializados = json.dumps(ORDINALES_RAMAS, ensure_ascii=False).replace("</", "<\\/")
 
     return (
         HTML_PAGINA
         .replace("__CURSOS_JSON__", cursos_serializados)
-        .replace("__CLAVES_JSON__", claves_serializadas)
         .replace("__NOTICIAS_JSON__", noticias_serializadas)
         .replace("__TACTICAS_JSON__", tacticas_serializadas)
         .replace("__TRUCOS_JSON__", trucos_serializados)
         .replace("__NIVELES_JSON__", niveles_serializados)
         .replace("__ORDINALES_JSON__", ordinales_serializados)
     )
-
-@app.route("/api/validar", methods=["POST"])
-def api_validar():
-    datos = request.get_json(silent=True) or {}
-    ok = validar_clave_usuario(datos.get("clave"))
-    return jsonify({
-        "ok": ok,
-        "mensaje": "Acceso concedido." if ok else "Clave inválida.",
-    })
 
 @app.route("/api/consulta", methods=["POST"])
 def api_consulta():
