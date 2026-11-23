@@ -7,30 +7,35 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-CODIGO_ACCESO = os.environ.get("C_PRE_CODIGO", "CPRE2026")
-PUERTO_APP = int(os.environ.get("PORT", 5000))
-HOST_APP = os.environ.get("HOST", "0.0.0.0")
-MODELO_IA = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
-API_KEY_IA = os.environ.get("GEMINI_API_KEY", "").strip()
+CLAVES_PERMITIDAS = [
+    os.environ.get("C_PRE_CODIGO", "CPRE2026").strip().upper(),
+    "CPRE2026",
+    "VIP100",
+]
 
-ORDEN_NIVELES = [
+PUERTO_SERVIDOR = int(os.environ.get("PORT", 5000))
+HOST_SERVIDOR = os.environ.get("HOST", "0.0.0.0")
+MODELO_GEMINI = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+CLAVE_GEMINI = os.environ.get("GEMINI_API_KEY", "").strip()
+
+NIVELES_SISTEMA = [
     "Easy",
     "Medium",
     "Hard",
     "Expert/Nativo",
 ]
 
-NOMBRES_RAMA_ORDINAL = {
-    1: "primera",
-    2: "segunda",
-    3: "tercera",
-    4: "cuarta",
-    5: "quinta",
-    6: "sexta",
-    7: "séptima",
+ORDINALES_RAMAS = {
+    "1": "primera",
+    "2": "segunda",
+    "3": "tercera",
+    "4": "cuarta",
+    "5": "quinta",
+    "6": "sexta",
+    "7": "séptima",
 }
 
-CATALOGO_IDIOMAS = [
+IDIOMAS_CONFIG = [
     {
         "nombre": "Inglés",
         "codigo": "en",
@@ -52,6 +57,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Keep up the good work",
         "modismo": "Piece of cake",
         "nativo": "I get the hang of it quickly",
+        "vocab_extra": {
+            "hola": "Hello",
+            "gracias": "Thank you",
+            "uno": "One",
+            "dos": "Two",
+            "tres": "Three",
+            "agua": "Water",
+            "casa": "House",
+            "libro": "Book",
+            "amigo": "Friend",
+            "tiempo": "Time",
+        },
     },
     {
         "nombre": "Español",
@@ -74,6 +91,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Seguir adelante con constancia",
         "modismo": "Pan comido",
         "nativo": "Le agarro el hilo rápido",
+        "vocab_extra": {
+            "hola": "Hola",
+            "gracias": "Gracias",
+            "uno": "Uno",
+            "dos": "Dos",
+            "tres": "Tres",
+            "agua": "Agua",
+            "casa": "Casa",
+            "libro": "Libro",
+            "amigo": "Amigo",
+            "tiempo": "Tiempo",
+        },
     },
     {
         "nombre": "Portugués",
@@ -91,11 +120,23 @@ CATALOGO_IDIOMAS = [
         "comparativo": "Praticar é melhor que decorar",
         "modal": "Você deve praticar todo dia",
         "perfecto": "Eu tenho estudado português",
-        "condicional": "Se eu praticar, eu melho",
+        "condicional": "Se eu praticar, eu melhoro",
         "pasiva": "O português é falado no Brasil",
         "compuesto": "Manter o ritmo de estudo",
         "modismo": "Moleza",
         "nativo": "Pego o jeito rapidinho",
+        "vocab_extra": {
+            "hola": "Olá",
+            "gracias": "Obrigado / Obrigada",
+            "uno": "Um",
+            "dos": "Dois",
+            "tres": "Três",
+            "agua": "Água",
+            "casa": "Casa",
+            "libro": "Livro",
+            "amigo": "Amigo",
+            "tiempo": "Tempo",
+        },
     },
     {
         "nombre": "Francés",
@@ -118,6 +159,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Garder le bon rythme",
         "modismo": "C'est du gâteau",
         "nativo": "Je prends le coup de main vite",
+        "vocab_extra": {
+            "hola": "Bonjour",
+            "gracias": "Merci",
+            "uno": "Un",
+            "dos": "Deux",
+            "tres": "Trois",
+            "agua": "Eau",
+            "casa": "Maison",
+            "libro": "Livre",
+            "amigo": "Ami",
+            "tiempo": "Temps",
+        },
     },
     {
         "nombre": "Alemán",
@@ -140,6 +193,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Dranbleiben beim Lernen",
         "modismo": "Ein Kinderspiel",
         "nativo": "Ich habe den Dreh schnell raus",
+        "vocab_extra": {
+            "hola": "Hallo",
+            "gracias": "Danke",
+            "uno": "Eins",
+            "dos": "Zwei",
+            "tres": "Drei",
+            "agua": "Wasser",
+            "casa": "Haus",
+            "libro": "Buch",
+            "amigo": "Freund",
+            "tiempo": "Zeit",
+        },
     },
     {
         "nombre": "Italiano",
@@ -162,6 +227,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Tenere alto il ritmo",
         "modismo": "Un gioco da ragazzi",
         "nativo": "Ci prendo subito la mano",
+        "vocab_extra": {
+            "hola": "Ciao",
+            "gracias": "Grazie",
+            "uno": "Uno",
+            "dos": "Due",
+            "tres": "Tre",
+            "agua": "Acqua",
+            "casa": "Casa",
+            "libro": "Libro",
+            "amigo": "Amico",
+            "tiempo": "Tempo",
+        },
     },
     {
         "nombre": "Chino Mandarín",
@@ -184,6 +261,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "坚持每天练习 (Jiānchí měitiān liànxí)",
         "modismo": "小菜一碟 (Xiǎo cài yī dié)",
         "nativo": "我很快就能掌握窍门 (Wǒ hěn kuài jiù néng zhǎngwò qiàomén)",
+        "vocab_extra": {
+            "hola": "你好 (Nǐ hǎo)",
+            "gracias": "谢谢 (Xièxie)",
+            "uno": "一 (Yī)",
+            "dos": "二 (Èr)",
+            "tres": "三 (Sān)",
+            "agua": "水 (Shuǐ)",
+            "casa": "家 (Jiā)",
+            "libro": "书 (Shū)",
+            "amigo": "朋友 (Péngyou)",
+            "tiempo": "时间 (Shíjiān)",
+        },
     },
     {
         "nombre": "Japonés",
@@ -206,6 +295,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "コツコツつづける (Kotsukotsu tsuzukeru)",
         "modismo": "おちゃのこさいさい (Ocha-no-ko saisai)",
         "nativo": "すぐこつをつかみます (Sugu kotsu o tsukamimasu)",
+        "vocab_extra": {
+            "hola": "こんにちは (Konnichiwa)",
+            "gracias": "ありがとう (Arigatō)",
+            "uno": "いち (Ichi)",
+            "dos": "に (Ni)",
+            "tres": "さん (San)",
+            "agua": "みず (Mizu)",
+            "casa": "いえ (Ie)",
+            "libro": "ほん (Hon)",
+            "amigo": "ともだち (Tomodachi)",
+            "tiempo": "じかん (Jikan)",
+        },
     },
     {
         "nombre": "Coreano",
@@ -228,6 +329,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "꾸준히 이어가기 (Kku-jun-hi i-eo-ga-gi)",
         "modismo": "식은 죽 먹기 (Sik-eun juk meok-gi)",
         "nativo": "요령을 금방 잡아요 (Yo-ryeong-eul geum-bang jab-a-yo)",
+        "vocab_extra": {
+            "hola": "안녕하세요 (Annyeonghaseyo)",
+            "gracias": "감사합니다 (Gamsahamnida)",
+            "uno": "하나 (Hana)",
+            "dos": "둘 (Dul)",
+            "tres": "셋 (Set)",
+            "agua": "물 (Mul)",
+            "casa": "집 (Jip)",
+            "libro": "책 (Chaek)",
+            "amigo": "친구 (Chingu)",
+            "tiempo": "시간 (Sigan)",
+        },
     },
     {
         "nombre": "Árabe",
@@ -250,6 +363,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "الاستمرار بثبات (Al-istimrār bi-thabāt)",
         "modismo": "أسهل من شربة ماء (Ashal min shurbat mā')",
         "nativo": "أفهم الفكرة بسرعة (Afham al-fikrah bi-sur'ah)",
+        "vocab_extra": {
+            "hola": "مرحباً (Marhaban)",
+            "gracias": "شكراً (Shukran)",
+            "uno": "واحد (Wāḥid)",
+            "dos": "اثنان (Ithnān)",
+            "tres": "ثلاثة (Thalāthah)",
+            "agua": "ماء (Mā')",
+            "casa": "بيت (Bayt)",
+            "libro": "كتاب (Kitāb)",
+            "amigo": "صديق (Ṣadīq)",
+            "tiempo": "وقت (Waqt)",
+        },
     },
     {
         "nombre": "Ruso",
@@ -272,6 +397,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Сохранять темп занятий (Sokhranyát' temp zanyátiy)",
         "modismo": "Проще простого (Próshche prostógo)",
         "nativo": "Быстро схватываю суть (Býstro skhvátývayu sut')",
+        "vocab_extra": {
+            "hola": "Привет (Privet)",
+            "gracias": "Спасибо (Spasíbo)",
+            "uno": "Один (Odín)",
+            "dos": "Два (Dva)",
+            "tres": "Три (Tri)",
+            "agua": "Вода (Vodá)",
+            "casa": "Дом (Dom)",
+            "libro": "Книга (Kníga)",
+            "amigo": "Друг (Drug)",
+            "tiempo": "Время (Vrémya)",
+        },
     },
     {
         "nombre": "Hindi",
@@ -294,6 +431,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "निरंतर अभ्यास बनाए रखना (Nirantar abhyaas banaaye rakhna)",
         "modismo": "बायें हाथ का खेल (Baayein haath ka khel)",
         "nativo": "मैं जल्दी तरीका समझ लेता हूँ (Main jaldi tareeqa samajh leta hoon)",
+        "vocab_extra": {
+            "hola": "नमस्ते (Namaste)",
+            "gracias": "धन्यवाद (Dhanyavaad)",
+            "uno": "एक (Ek)",
+            "dos": "दो (Do)",
+            "tres": "तीन (Teen)",
+            "agua": "पानी (Paani)",
+            "casa": "घर (Ghar)",
+            "libro": "किताब (Kitaab)",
+            "amigo": "दोस्त (Dost)",
+            "tiempo": "समय (Samay)",
+        },
     },
     {
         "nombre": "Bengalí",
@@ -316,6 +465,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "নিয়মিত অনুশীলন বজায় রাখা (Niyomito onushilon bojay rakha)",
         "modismo": "বাম হাতের খেল (Bam hater khel)",
         "nativo": "আমি দ্রুত কৌশল ধরে ফেলি (Ami druto koushol dhore feli)",
+        "vocab_extra": {
+            "hola": "নমস্কার (Nomoshkar)",
+            "gracias": "ধন্যবাদ (Dhonnobad)",
+            "uno": "এক (Ek)",
+            "dos": "দুই (Dui)",
+            "tres": "তিন (Tin)",
+            "agua": "জল (Jol)",
+            "casa": "বাড়ি (Bari)",
+            "libro": "বই (Boi)",
+            "amigo": "বন্ধু (Bondhu)",
+            "tiempo": "সময় (Shomoy)",
+        },
     },
     {
         "nombre": "Turco",
@@ -338,6 +499,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Düzenli çalışmayı sürdürmek",
         "modismo": "Çocuk oyuncağı",
         "nativo": "İşin mantığını çabuk kaparım",
+        "vocab_extra": {
+            "hola": "Merhaba",
+            "gracias": "Teşekkürler",
+            "uno": "Bir",
+            "dos": "İki",
+            "tres": "Üç",
+            "agua": "Su",
+            "casa": "Ev",
+            "libro": "Kitap",
+            "amigo": "Arkadaş",
+            "tiempo": "Zaman",
+        },
     },
     {
         "nombre": "Neerlandés",
@@ -360,6 +533,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Het ritme vasthouden",
         "modismo": "Een fluitje van een cent",
         "nativo": "Ik heb de slag snel te pakken",
+        "vocab_extra": {
+            "hola": "Hallo",
+            "gracias": "Dank je",
+            "uno": "Een",
+            "dos": "Twee",
+            "tres": "Drie",
+            "agua": "Water",
+            "casa": "Huis",
+            "libro": "Boek",
+            "amigo": "Vriend",
+            "tiempo": "Tijd",
+        },
     },
     {
         "nombre": "Polaco",
@@ -382,6 +567,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Utrzymać stałe tempo",
         "modismo": "Bułka z masłem",
         "nativo": "Szybko łapię sedno",
+        "vocab_extra": {
+            "hola": "Cześć",
+            "gracias": "Dziękuję",
+            "uno": "Jeden",
+            "dos": "Dwa",
+            "tres": "Trzy",
+            "agua": "Woda",
+            "casa": "Dom",
+            "libro": "Książka",
+            "amigo": "Przyjaciel",
+            "tiempo": "Czas",
+        },
     },
     {
         "nombre": "Sueco",
@@ -404,6 +601,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Hålla jämnt tempo",
         "modismo": "En barnlek",
         "nativo": "Jag får kläm på det snabbt",
+        "vocab_extra": {
+            "hola": "Hej",
+            "gracias": "Tack",
+            "uno": "Ett",
+            "dos": "Två",
+            "tres": "Tre",
+            "agua": "Vatten",
+            "casa": "Hus",
+            "libro": "Bok",
+            "amigo": "Vän",
+            "tiempo": "Tid",
+        },
     },
     {
         "nombre": "Griego",
@@ -426,6 +635,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Διατήρηση σταθερού ρυθμού (Diatírisi statheroú rythmoú)",
         "modismo": "Παιχνιδάκι (Paichnidáki)",
         "nativo": "Πιάνω γρήγορα το νόημα (Piáno grígora to nóima)",
+        "vocab_extra": {
+            "hola": "Γεια σου (Geia sou)",
+            "gracias": "Ευχαριστώ (Efcharistó)",
+            "uno": "Ένα (Éna)",
+            "dos": "Δύο (Dýo)",
+            "tres": "Τρία (Tría)",
+            "agua": "Νερό (Neró)",
+            "casa": "Σπίτι (Spíti)",
+            "libro": "Βιβλίο (Vivlío)",
+            "amigo": "Φίλος (Fílos)",
+            "tiempo": "Χρόνος (Chrónos)",
+        },
     },
     {
         "nombre": "Vietnamita",
@@ -448,6 +669,18 @@ CATALOGO_IDIOMAS = [
         "compuesto": "Duy trì nhịp độ đều đặn",
         "modismo": "Dễ như ăn kẹo",
         "nativo": "Tôi nắm bắt cách làm rất nhanh",
+        "vocab_extra": {
+            "hola": "Xin chào",
+            "gracias": "Cảm ơn",
+            "uno": "Một",
+            "dos": "Hai",
+            "tres": "Ba",
+            "agua": "Nước",
+            "casa": "Nhà",
+            "libro": "Sách",
+            "amigo": "Bạn",
+            "tiempo": "Thời gian",
+        },
     },
     {
         "nombre": "Persa",
@@ -470,424 +703,403 @@ CATALOGO_IDIOMAS = [
         "compuesto": "حفظ پیوستگی در مطالعه (Hefz-e peyvastegī dar motāle'eh)",
         "modismo": "مثل آب خوردن (Mesl-e āb khordan)",
         "nativo": "زود قلق کار دستم می‌آید (Zood qoloq-e kār dastam mīāyad)",
+        "vocab_extra": {
+            "hola": "سلام (Salām)",
+            "gracias": "ممنون (Mamnoon)",
+            "uno": "یک (Yek)",
+            "dos": "دو (Do)",
+            "tres": "سه (Seh)",
+            "agua": "آب (Āb)",
+            "casa": "خانه (Khāneh)",
+            "libro": "کتاب (Ketāb)",
+            "amigo": "دوست (Doost)",
+            "tiempo": "زمان (Zamān)",
+        },
     },
 ]
 
 NOTICIAS_DIARIAS = [
-    "Noticia diaria (Inglés): Daily reading of short headlines helps you recognize real English vocabulary faster.",
-    "Noticia diaria (Inglés): Listening to short native clips and repeating aloud builds clear pronunciation naturally.",
-    "Noticia diaria (Inglés): Writing three sentences every day about your routine reinforces core verb structures.",
-    "Noticia diaria (Inglés): Grouping expressions by real situations makes recall easier than isolated lists.",
-    "Noticia diaria (Inglés): Reviewing missed exam items turns mistakes into solid rules for next time.",
-    "Noticia diaria (Inglés): Speaking simple ideas out loud early prevents freezing when a conversation starts.",
-    "Noticia diaria (Inglés): Consistent 15-minute sessions beat long irregular cramming sessions.",
+    "Noticia diaria (Inglés): Reading short headlines every morning builds natural recognition of real English phrases.",
+    "Noticia diaria (Inglés): Listening to short spoken clips and repeating them aloud trains clarity and rhythm.",
+    "Noticia diaria (Inglés): Writing three lines daily about your routine strengthens core verb usage.",
+    "Noticia diaria (Inglés): Learning expressions grouped by situation prevents mixing unrelated vocabulary.",
+    "Noticia diaria (Inglés): Reviewing missed exam questions turns weak spots into permanent knowledge.",
+    "Noticia diaria (Inglés): Practicing simple affirmative and negative sentences early speeds up conversation.",
+    "Noticia diaria (Inglés): Fifteen focused minutes every day outperforms cramming once a week.",
+    "Noticia diaria (Inglés): Paying attention to context helps you choose the exact phrase native speakers expect.",
+    "Noticia diaria (Inglés): Mastering numbers early helps with time, prices, dates, and daily communication.",
+    "Noticia diaria (Inglés): Advancing step by step from Easy to Expert builds solid long-term fluency.",
 ]
 
 TACTICAS_DIARIAS = [
-    "Táctica del día: Trabaja una rama a la vez y domina su idea central antes de ir a la evaluación.",
-    "Táctica del día: Si vas a intentar saltar Easy, revisa bien la estructura base para superar los 10/20.",
-    "Táctica del día: Compara la expresión correcta con las distractores en cada pregunta de la hoja de examen.",
-    "Táctica del día: Aplica los números y frases de la rama en ejemplos tuyos antes de cerrar la sesión.",
-    "Táctica del día: Revisa qué pregunta te quitó puntos cuando tu nota sea menor a 20/20.",
-    "Táctica del día: Cambia de idioma en el selector superior para ver cómo se adapta todo el sistema.",
-    "Táctica del día: Combina las ramas con los 10 juegos para fijar reflejo y comprensión.",
+    "Táctica del día: Completa las 5 clases de la rama actual antes de abrir la hoja de examen.",
+    "Táctica del día: Si eliges saltar Easy, concentra tu atención en cada punto porque necesitas mínimo 10/20.",
+    "Táctica del día: En cada pregunta del examen verifica qué estructura pertenece realmente al tema estudiado.",
+    "Táctica del día: Usa los números en voz alta después de estudiar la Rama 3 de Easy.",
+    "Táctica del día: Analiza cada punto perdido en el desglose de calificación para subir a 20/20.",
+    "Táctica del día: Cambia de idioma en el menú superior para comparar cómo se expresa la misma idea.",
+    "Táctica del día: Alterna entre ramas teóricas y los 10 juegos adaptados para fijar memoria rápida.",
+    "Táctica del día: No saltes preguntas de escritura; escribir fija ortografía y orden gramatical.",
+    "Táctica del día: Mantén coherencia temática: cada rama trabaja un solo bloque sin mezclar conceptos.",
+    "Táctica del día: Repasa el esquema de 3 pasos al final de cada rama antes de evaluarte.",
 ]
 
 TRUCOS_DIARIOS = [
-    "Truco del día: Conecta cada palabra nueva con una situación real en vez de traducir palabra por palabra.",
-    "Truco del día: Al escribir en la hoja de examen, revisa mayúsculas, ortografía y claridad de la respuesta.",
-    "Truco del día: En las preguntas de Verdadero o Falso, lee si la afirmación coincide con el tema de la rama.",
-    "Truco del día: Usa el modo Profesor para explicaciones y el modo Buscador para consultar términos puntuales.",
-    "Truco del día: Repasa los números en la Rama 3 de Easy para ganar seguridad al contar.",
-    "Truco del día: Si repruebas con menos de 10/20, vuelve a leer las 5 clases de la rama antes de reintentar.",
-    "Truco del día: Mantén la constancia diaria para subir de Easy a Medium, Hard y Expert/Nativo.",
+    "Truco del día: Asocia cada expresión nueva con una situación real en lugar de traducir palabra por palabra.",
+    "Truco del día: En Verdadero o Falso, comprueba si la frase corresponde exactamente al tema de esa rama.",
+    "Truco del día: Cuando escribas tu respuesta en el examen, revisa que no falten letras clave.",
+    "Truco del día: Usa el botón PREGUNTAR para dudas de gramática y BUSCAR para significado y ejemplo.",
+    "Truco del día: Practica la Rama 3 de Easy hasta dominar los números sin dudar.",
+    "Truco del día: Si sacas de 0 a 9 puntos, vuelve a leer las clases de esa rama y presenta de nuevo.",
+    "Truco del día: Observa el contraste entre la expresión principal y la alternativa en cada rama.",
+    "Truco del día: En los niveles Hard y Expert/Nativo, fíjate en los matices y expresiones idiomáticas.",
+    "Truco del día: Usa los juegos diarios como calentamiento rápido antes de presentar una evaluación.",
+    "Truco del día: Mantén una meta clara: aprobar cada rama con 10/20 o más hasta llegar a Expert/Nativo.",
 ]
 
-def construir_hoja_20_puntos(idioma, tema, ejemplo_principal, ejemplo_contraste):
+def construir_preguntas_examen(idioma, tema, principal, contraste):
+    base_corta = principal.split("(")[0].strip().lower()
     return [
         {
             "numero": 1,
             "tipo": "verdadero_falso",
             "puntos": 4,
-            "enunciado": f"Verdadero o Falso: En {idioma}, '{ejemplo_principal}' corresponde al tema '{tema}'.",
+            "enunciado": f"Verdadero o Falso: En {idioma}, '{principal}' corresponde al tema '{tema}'.",
             "opciones": ["Verdadero", "Falso"],
             "correcta": "Verdadero",
-            "explicacion": f"Correcto: '{ejemplo_principal}' está directamente vinculado con {tema} en {idioma}.",
+            "explicacion": f"'{principal}' pertenece directamente al tema '{tema}' en {idioma}.",
         },
         {
             "numero": 2,
             "tipo": "completar",
             "puntos": 4,
-            "enunciado": f"Completa la expresión para '{tema}' en {idioma}: [ __________ ]",
-            "opciones": [ejemplo_principal, ejemplo_contraste],
-            "correcta": ejemplo_principal,
-            "explicacion": f"La expresión que completa este bloque es '{ejemplo_principal}'.",
+            "enunciado": f"Completa el bloque correspondiente a '{tema}' en {idioma}: [ __________ ]",
+            "opciones": [principal, contraste],
+            "correcta": principal,
+            "explicacion": f"La expresión correcta para completar este bloque es '{principal}'.",
         },
         {
             "numero": 3,
             "tipo": "identificar",
             "puntos": 4,
-            "enunciado": f"Identifica la opción adecuada para '{tema}' en {idioma}:",
-            "opciones": [ejemplo_principal, ejemplo_contraste, "Ninguna opción coincide"],
-            "correcta": ejemplo_principal,
-            "explicacion": f"'{ejemplo_principal}' es la forma que identifica este tema en {idioma}.",
+            "enunciado": f"Identifica la expresión correcta de '{tema}' en {idioma}:",
+            "opciones": [principal, contraste, "Ninguna de las anteriores"],
+            "correcta": principal,
+            "explicacion": f"'{principal}' identifica correctamente el patrón de '{tema}'.",
         },
         {
             "numero": 4,
             "tipo": "escribir",
             "puntos": 4,
-            "enunciado": f"Escribe la expresión clave de '{tema}' en {idioma}:",
-            "aceptadas": [
-                ejemplo_principal.lower(),
-                ejemplo_principal.lower().split("(")[0].strip(),
-            ],
-            "muestra": ejemplo_principal,
-            "explicacion": f"Respuesta esperada para esta pregunta: {ejemplo_principal}.",
+            "enunciado": f"Escribe la expresión clave trabajada en '{tema}' ({idioma}):",
+            "aceptadas": [principal.lower(), base_corta],
+            "muestra": principal,
+            "explicacion": f"Respuesta esperada: {principal}.",
         },
         {
             "numero": 5,
             "tipo": "verdadero_falso",
             "puntos": 4,
-            "enunciado": f"Verdadero o Falso: '{ejemplo_contraste}' tiene exactamente el mismo uso que '{ejemplo_principal}'.",
+            "enunciado": f"Verdadero o Falso: '{contraste}' es idéntico en función a '{principal}'.",
             "opciones": ["Verdadero", "Falso"],
             "correcta": "Falso",
-            "explicacion": f"'{ejemplo_principal}' y '{ejemplo_contraste}' representan usos o contrastes distintos en {idioma}.",
+            "explicacion": f"'{principal}' y '{contraste}' cumplen funciones distintas en {idioma}.",
         },
     ]
 
-def construir_clases_rama(idioma, subtema, principal, contraste, nivel_nombre):
+def construir_cinco_clases(idioma, nivel, subtema, principal, contraste):
     return [
-        f"Clase 1 ({nivel_nombre} · {subtema}): Observa la estructura principal '{principal}' en {idioma} y su propósito.",
-        f"Clase 2 (Análisis de forma): Compara '{principal}' frente a '{contraste}' para no confundirlos.",
-        f"Clase 3 (Uso práctico): Piensa en cuándo usar '{principal}' dentro de una conversación real en {idioma}.",
-        f"Clase 4 (Precisión y errores): Evita mezclar '{principal}' con temas ajenos a '{subtema}'.",
-        f"Clase 5 (Preparación para evaluación): Verifica que domines '{principal}' antes de presentar la hoja de 20 puntos.",
+        f"Clase 1 ({nivel} · {subtema}): Identifica la expresión central '{principal}' en {idioma} y su sentido exacto.",
+        f"Clase 2 (Diferenciación): Compara '{principal}' con '{contraste}' para distinguir cuándo usar cada una.",
+        f"Clase 3 (Aplicación real): Ubica '{principal}' dentro de una situación cotidiana en {idioma}.",
+        f"Clase 4 (Control de errores): Mantén el foco solo en '{subtema}' sin mezclar temas ajenos.",
+        f"Clase 5 (Cierre de rama): Repasa '{principal}' antes de presentar la evaluación sobre 20 puntos.",
     ]
 
-def construir_curso_completo(entry):
-    nombre = entry["nombre"]
-    easy_ramas = [
+def compilar_idioma(cfg):
+    nombre = cfg["nombre"]
+    plan_easy = [
         {
             "numero": 1,
             "titulo": "Rama 1 · Verbo Ser e Identidad",
             "subtema": "Verbo ser e identidad",
-            "principal": entry["identidad"],
-            "contraste": entry["saludo"],
-            "esquema": f"[Easy · Rama 1] -> [Identidad: {entry['identidad']}]",
-            "ejemplos": [
-                f"Identidad base: {entry['identidad']}",
-                f"Contraste inicial: {entry['saludo']}",
-            ],
+            "principal": cfg["identidad"],
+            "contraste": cfg["saludo"],
+            "esquema": f"[Easy · Rama 1] -> [Identidad: {cfg['identidad']}]",
+            "ejemplos": [f"Identidad: {cfg['identidad']}", f"Contraste: {cfg['saludo']}"],
         },
         {
             "numero": 2,
             "titulo": "Rama 2 · Saludos y Cortesía",
             "subtema": "Saludos y cortesía",
-            "principal": entry["saludo"],
-            "contraste": entry["gracias"],
-            "esquema": f"[Easy · Rama 2] -> [Saludo: {entry['saludo']}] -> [Cortesía: {entry['gracias']}]",
-            "ejemplos": [
-                f"Saludo: {entry['saludo']}",
-                f"Cortesía: {entry['gracias']}",
-            ],
+            "principal": cfg["saludo"],
+            "contraste": cfg["gracias"],
+            "esquema": f"[Easy · Rama 2] -> [Saludo: {cfg['saludo']}] -> [Cortesía: {cfg['gracias']}]",
+            "ejemplos": [f"Saludo: {cfg['saludo']}", f"Cortesía: {cfg['gracias']}"],
         },
         {
             "numero": 3,
             "titulo": "Rama 3 · Números",
             "subtema": "Números",
-            "principal": entry["numeros"],
-            "contraste": entry["identidad"],
-            "esquema": f"[Easy · Rama 3] -> [Números: {entry['numeros']}]",
-            "ejemplos": [
-                f"Números: {entry['numeros']}",
-                f"En contexto de identidad: {entry['identidad']}",
-            ],
+            "principal": cfg["numeros"],
+            "contraste": cfg["identidad"],
+            "esquema": f"[Easy · Rama 3] -> [Números: {cfg['numeros']}]",
+            "ejemplos": [f"Números: {cfg['numeros']}", f"Referencia: {cfg['identidad']}"],
         },
         {
             "numero": 4,
-            "titulo": "Rama 4 · Momentos de la Mañana",
-            "subtema": "Momentos de la mañana",
-            "principal": entry["manana"],
-            "contraste": entry["saludo"],
-            "esquema": f"[Easy · Rama 4] -> [Mañana: {entry['manana']}]",
-            "ejemplos": [
-                f"Mañana: {entry['manana']}",
-                f"Saludo general: {entry['saludo']}",
-            ],
+            "titulo": "Rama 4 · Saludo de la Mañana",
+            "subtema": "Saludo de la mañana",
+            "principal": cfg["manana"],
+            "contraste": cfg["saludo"],
+            "esquema": f"[Easy · Rama 4] -> [Mañana: {cfg['manana']}]",
+            "ejemplos": [f"Mañana: {cfg['manana']}", f"Saludo general: {cfg['saludo']}"],
         },
         {
             "numero": 5,
             "titulo": "Rama 5 · Agradecimiento",
             "subtema": "Agradecimiento",
-            "principal": entry["gracias"],
-            "contraste": entry["listo"],
-            "esquema": f"[Easy · Rama 5] -> [Agradecimiento: {entry['gracias']}]",
-            "ejemplos": [
-                f"Agradecimiento: {entry['gracias']}",
-                f"Disponibilidad: {entry['listo']}",
-            ],
+            "principal": cfg["gracias"],
+            "contraste": cfg["listo"],
+            "esquema": f"[Easy · Rama 5] -> [Gracias: {cfg['gracias']}]",
+            "ejemplos": [f"Agradecer: {cfg['gracias']}", f"Disponibilidad: {cfg['listo']}"],
         },
         {
             "numero": 6,
             "titulo": "Rama 6 · Estar Listo y Disposición",
             "subtema": "Estar listo y disposición",
-            "principal": entry["listo"],
-            "contraste": entry["frase"],
-            "esquema": f"[Easy · Rama 6] -> [Listo: {entry['listo']}]",
-            "ejemplos": [
-                f"Listo: {entry['listo']}",
-                f"Práctica diaria: {entry['frase']}",
-            ],
+            "principal": cfg["listo"],
+            "contraste": cfg["frase"],
+            "esquema": f"[Easy · Rama 6] -> [Listo: {cfg['listo']}]",
+            "ejemplos": [f"Listo: {cfg['listo']}", f"Práctica: {cfg['frase']}"],
         },
         {
             "numero": 7,
-            "titulo": "Rama 7 · Oraciones Diarias Simples",
-            "subtema": "Oraciones diarias simples",
-            "principal": entry["frase"],
-            "contraste": entry["numeros"],
-            "esquema": f"[Easy · Rama 7] -> [Oración: {entry['frase']}]",
-            "ejemplos": [
-                f"Oración: {entry['frase']}",
-                f"Apoyo numérico: {entry['numeros']}",
-            ],
+            "titulo": "Rama 7 · Oraciones Cotidianas",
+            "subtema": "Oraciones cotidianas",
+            "principal": cfg["frase"],
+            "contraste": cfg["numeros"],
+            "esquema": f"[Easy · Rama 7] -> [Oración: {cfg['frase']}]",
+            "ejemplos": [f"Oración: {cfg['frase']}", f"Números: {cfg['numeros']}"],
         },
     ]
 
-    medium_ramas = [
+    plan_medium = [
         {
             "numero": 1,
             "titulo": "Rama 1 · Tiempo Pasado",
             "subtema": "Tiempo pasado",
-            "principal": entry["pasado"],
-            "contraste": entry["frase"],
-            "esquema": f"[Medium · Rama 1] -> [Pasado: {entry['pasado']}]",
-            "ejemplos": [
-                f"Pasado: {entry['pasado']}",
-                f"Presente habitual: {entry['frase']}",
-            ],
+            "principal": cfg["pasado"],
+            "contraste": cfg["frase"],
+            "esquema": f"[Medium · Rama 1] -> [Pasado: {cfg['pasado']}]",
+            "ejemplos": [f"Pasado: {cfg['pasado']}", f"Presente: {cfg['frase']}"],
         },
         {
             "numero": 2,
-            "titulo": "Rama 2 · Planes y Futuro",
-            "subtema": "Planes y futuro",
-            "principal": entry["futuro"],
-            "contraste": entry["pasado"],
-            "esquema": f"[Medium · Rama 2] -> [Futuro: {entry['futuro']}]",
-            "ejemplos": [
-                f"Futuro: {entry['futuro']}",
-                f"Referencia pasada: {entry['pasado']}",
-            ],
+            "titulo": "Rama 2 · Futuro y Planes",
+            "subtema": "Futuro y planes",
+            "principal": cfg["futuro"],
+            "contraste": cfg["pasado"],
+            "esquema": f"[Medium · Rama 2] -> [Futuro: {cfg['futuro']}]",
+            "ejemplos": [f"Futuro: {cfg['futuro']}", f"Pasado: {cfg['pasado']}"],
         },
         {
             "numero": 3,
-            "titulo": "Rama 3 · Acción en Curso vs Rutina",
-            "subtema": "Acción en curso vs rutina",
-            "principal": entry["continuo"],
-            "contraste": entry["frase"],
-            "esquema": f"[Medium · Rama 3] -> [En curso: {entry['continuo']}]",
-            "ejemplos": [
-                f"En curso: {entry['continuo']}",
-                f"Rutina: {entry['frase']}",
-            ],
+            "titulo": "Rama 3 · Acción en Curso",
+            "subtema": "Acción en curso",
+            "principal": cfg["continuo"],
+            "contraste": cfg["frase"],
+            "esquema": f"[Medium · Rama 3] -> [Continuo: {cfg['continuo']}]",
+            "ejemplos": [f"Ahora: {cfg['continuo']}", f"Rutina: {cfg['frase']}"],
         },
         {
             "numero": 4,
-            "titulo": "Rama 4 · Comparaciones",
-            "subtema": "Comparaciones",
-            "principal": entry["comparativo"],
-            "contraste": entry["numeros"],
-            "esquema": f"[Medium · Rama 4] -> [Comparación: {entry['comparativo']}]",
-            "ejemplos": [
-                f"Comparación: {entry['comparativo']}",
-                f"Conteo base: {entry['numeros']}",
-            ],
+            "titulo": "Rama 4 · Comparativos",
+            "subtema": "Comparativos",
+            "principal": cfg["comparativo"],
+            "contraste": cfg["numeros"],
+            "esquema": f"[Medium · Rama 4] -> [Comparativo: {cfg['comparativo']}]",
+            "ejemplos": [f"Comparación: {cfg['comparativo']}", f"Conteo: {cfg['numeros']}"],
         },
         {
             "numero": 5,
-            "titulo": "Rama 5 · Recomendación y Deber",
-            "subtema": "Recomendación y deber",
-            "principal": entry["modal"],
-            "contraste": entry["listo"],
-            "esquema": f"[Medium · Rama 5] -> [Modal: {entry['modal']}]",
-            "ejemplos": [
-                f"Modal: {entry['modal']}",
-                f"Disposición: {entry['listo']}",
-            ],
+            "titulo": "Rama 5 · Verbos Modales y Deber",
+            "subtema": "Verbos modales y deber",
+            "principal": cfg["modal"],
+            "contraste": cfg["listo"],
+            "esquema": f"[Medium · Rama 5] -> [Modal: {cfg['modal']}]",
+            "ejemplos": [f"Modal: {cfg['modal']}", f"Disposición: {cfg['listo']}"],
         },
     ]
 
-    hard_ramas = [
+    plan_hard = [
         {
             "numero": 1,
             "titulo": "Rama 1 · Tiempos Perfectos",
             "subtema": "Tiempos perfectos",
-            "principal": entry["perfecto"],
-            "contraste": entry["pasado"],
-            "esquema": f"[Hard · Rama 1] -> [Perfecto: {entry['perfecto']}]",
-            "ejemplos": [
-                f"Perfecto: {entry['perfecto']}",
-                f"Pasado simple: {entry['pasado']}",
-            ],
+            "principal": cfg["perfecto"],
+            "contraste": cfg["pasado"],
+            "esquema": f"[Hard · Rama 1] -> [Perfecto: {cfg['perfecto']}]",
+            "ejemplos": [f"Perfecto: {cfg['perfecto']}", f"Pasado simple: {cfg['pasado']}"],
         },
         {
             "numero": 2,
-            "titulo": "Rama 2 · Estructuras Condicionales",
-            "subtema": "Estructuras condicionales",
-            "principal": entry["condicional"],
-            "contraste": entry["futuro"],
-            "esquema": f"[Hard · Rama 2] -> [Condicional: {entry['condicional']}]",
-            "ejemplos": [
-                f"Condicional: {entry['condicional']}",
-                f"Proyección futura: {entry['futuro']}",
-            ],
+            "titulo": "Rama 2 · Condicionales",
+            "subtema": "Condicionales",
+            "principal": cfg["condicional"],
+            "contraste": cfg["futuro"],
+            "esquema": f"[Hard · Rama 2] -> [Condicional: {cfg['condicional']}]",
+            "ejemplos": [f"Condicional: {cfg['condicional']}", f"Futuro: {cfg['futuro']}"],
         },
         {
             "numero": 3,
-            "titulo": "Rama 3 · Voz Pasiva y Formalidad",
-            "subtema": "Voz pasiva y formalidad",
-            "principal": entry["pasiva"],
-            "contraste": entry["frase"],
-            "esquema": f"[Hard · Rama 3] -> [Pasiva: {entry['pasiva']}]",
-            "ejemplos": [
-                f"Pasiva: {entry['pasiva']}",
-                f"Forma activa: {entry['frase']}",
-            ],
+            "titulo": "Rama 3 · Voz Pasiva",
+            "subtema": "Voz pasiva",
+            "principal": cfg["pasiva"],
+            "contraste": cfg["frase"],
+            "esquema": f"[Hard · Rama 3] -> [Pasiva: {cfg['pasiva']}]",
+            "ejemplos": [f"Pasiva: {cfg['pasiva']}", f"Activa: {cfg['frase']}"],
         },
     ]
 
-    expert_ramas = [
+    plan_expert = [
         {
             "numero": 1,
             "titulo": "Rama 1 · Expresiones Compuestas",
             "subtema": "Expresiones compuestas",
-            "principal": entry["compuesto"],
-            "contraste": entry["modal"],
-            "esquema": f"[Expert/Nativo · Rama 1] -> [Compuesta: {entry['compuesto']}]",
-            "ejemplos": [
-                f"Compuesta: {entry['compuesto']}",
-                f"Consejo: {entry['modal']}",
-            ],
+            "principal": cfg["compuesto"],
+            "contraste": cfg["modal"],
+            "esquema": f"[Expert/Nativo · Rama 1] -> [Compuesta: {cfg['compuesto']}]",
+            "ejemplos": [f"Compuesta: {cfg['compuesto']}", f"Modal: {cfg['modal']}"],
         },
         {
             "numero": 2,
-            "titulo": "Rama 2 · Modismos del Idioma",
-            "subtema": "Modismos del idioma",
-            "principal": entry["modismo"],
-            "contraste": entry["comparativo"],
-            "esquema": f"[Expert/Nativo · Rama 2] -> [Modismo: {entry['modismo']}]",
-            "ejemplos": [
-                f"Modismo: {entry['modismo']}",
-                f"Comparación: {entry['comparativo']}",
-            ],
+            "titulo": "Rama 2 · Modismos y Giros",
+            "subtema": "Modismos y giros",
+            "principal": cfg["modismo"],
+            "contraste": cfg["comparativo"],
+            "esquema": f"[Expert/Nativo · Rama 2] -> [Modismo: {cfg['modismo']}]",
+            "ejemplos": [f"Modismo: {cfg['modismo']}", f"Comparativo: {cfg['comparativo']}"],
         },
         {
             "numero": 3,
-            "titulo": "Rama 3 · Precisión Nativa Final",
-            "subtema": "Precisión nativa final",
-            "principal": entry["nativo"],
-            "contraste": entry["condicional"],
-            "esquema": f"[Expert/Nativo · Rama 3] -> [Nativo: {entry['nativo']}]",
-            "ejemplos": [
-                f"Nativo: {entry['nativo']}",
-                f"Condicional: {entry['condicional']}",
-            ],
+            "titulo": "Rama 3 · Dominio Nativo Final",
+            "subtema": "Dominio nativo final",
+            "principal": cfg["nativo"],
+            "contraste": cfg["condicional"],
+            "esquema": f"[Expert/Nativo · Rama 3] -> [Nativo: {cfg['nativo']}]",
+            "ejemplos": [f"Nativo: {cfg['nativo']}", f"Condicional: {cfg['condicional']}"],
         },
     ]
 
-    grupos_crudos = {
-        "Easy": easy_ramas,
-        "Medium": medium_ramas,
-        "Hard": hard_ramas,
-        "Expert/Nativo": expert_ramas,
+    niveles_crudos = {
+        "Easy": plan_easy,
+        "Medium": plan_medium,
+        "Hard": plan_hard,
+        "Expert/Nativo": plan_expert,
     }
 
-    niveles_armados = {}
-    for nivel_nom, lista_ramas in grupos_crudos.items():
-        ramas_finales = []
-        for r in lista_ramas:
-            ramas_finales.append({
+    niveles_compilados = {}
+    for nivel_nom, ramas_lista in niveles_crudos.items():
+        ramas_procesadas = []
+        for r in ramas_lista:
+            ramas_procesadas.append({
                 "numero": r["numero"],
                 "titulo": r["titulo"],
                 "subtema": r["subtema"],
-                "clases": construir_clases_rama(nombre, r["subtema"], r["principal"], r["contraste"], nivel_nom),
+                "clases": construir_cinco_clases(nombre, nivel_nom, r["subtema"], r["principal"], r["contraste"]),
                 "esquema": r["esquema"],
                 "ejemplos": r["ejemplos"],
-                "eval": construir_hoja_20_puntos(nombre, r["subtema"], r["principal"], r["contraste"]),
+                "eval": construir_preguntas_examen(nombre, r["subtema"], r["principal"], r["contraste"]),
             })
-        niveles_armados[nivel_nom] = ramas_finales
+        niveles_compilados[nivel_nom] = ramas_procesadas
 
-    juegos_10 = [
-        {"n": 1, "t": "Saludo Rápido", "r": f"Elige el saludo en {nombre}:", "ops": [entry["saludo"], entry["gracias"], entry["numeros"]], "ok": entry["saludo"]},
-        {"n": 2, "t": "Agradecimiento", "r": f"Elige cómo dar las gracias en {nombre}:", "ops": [entry["gracias"], entry["saludo"], entry["manana"]], "ok": entry["gracias"]},
-        {"n": 3, "t": "Números", "r": f"Selecciona los números en {nombre}:", "ops": [entry["numeros"], entry["saludo"], entry["pasado"]], "ok": entry["numeros"]},
-        {"n": 4, "t": "Mañana", "r": f"Elige el saludo de mañana en {nombre}:", "ops": [entry["manana"], entry["gracias"], entry["futuro"]], "ok": entry["manana"]},
-        {"n": 5, "t": "Estar Listo", "r": f"Elige cómo decir que estás listo en {nombre}:", "ops": [entry["listo"], entry["modismo"], entry["manana"]], "ok": entry["listo"]},
-        {"n": 6, "t": "Identidad", "r": f"Elige la frase de identidad en {nombre}:", "ops": [entry["identidad"], entry["gracias"], entry["pasiva"]], "ok": entry["identidad"]},
-        {"n": 7, "t": "Rutina Diaria", "r": f"Selecciona la frase diaria en {nombre}:", "ops": [entry["frase"], entry["numeros"], entry["saludo"]], "ok": entry["frase"]},
-        {"n": 8, "t": "Pasado y Futuro", "r": f"Elige la expresión de futuro en {nombre}:", "ops": [entry["futuro"], entry["pasado"], entry["saludo"]], "ok": entry["futuro"]},
-        {"n": 9, "t": "Condicional", "r": f"Selecciona la estructura condicional en {nombre}:", "ops": [entry["condicional"], entry["gracias"], entry["numeros"]], "ok": entry["condicional"]},
-        {"n": 10, "t": "Toque Nativo", "r": f"Elige la expresión nativa en {nombre}:", "ops": [entry["nativo"], entry["manana"], entry["identidad"]], "ok": entry["nativo"]},
+    juegos_adaptados = [
+        {"n": 1, "t": "Saludo", "r": f"Elige el saludo en {nombre}:", "ops": [cfg["saludo"], cfg["gracias"], cfg["numeros"]], "ok": cfg["saludo"]},
+        {"n": 2, "t": "Gracias", "r": f"Elige cómo agradecer en {nombre}:", "ops": [cfg["gracias"], cfg["saludo"], cfg["manana"]], "ok": cfg["gracias"]},
+        {"n": 3, "t": "Números", "r": f"Selecciona los números en {nombre}:", "ops": [cfg["numeros"], cfg["saludo"], cfg["pasado"]], "ok": cfg["numeros"]},
+        {"n": 4, "t": "Mañana", "r": f"Elige el saludo de mañana en {nombre}:", "ops": [cfg["manana"], cfg["gracias"], cfg["futuro"]], "ok": cfg["manana"]},
+        {"n": 5, "t": "Listo", "r": f"Elige cómo indicar que estás listo en {nombre}:", "ops": [cfg["listo"], cfg["modismo"], cfg["manana"]], "ok": cfg["listo"]},
+        {"n": 6, "t": "Identidad", "r": f"Elige la frase de identidad en {nombre}:", "ops": [cfg["identidad"], cfg["gracias"], cfg["pasiva"]], "ok": cfg["identidad"]},
+        {"n": 7, "t": "Frase Diaria", "r": f"Selecciona la frase diaria en {nombre}:", "ops": [cfg["frase"], cfg["numeros"], cfg["saludo"]], "ok": cfg["frase"]},
+        {"n": 8, "t": "Futuro", "r": f"Elige la expresión de futuro en {nombre}:", "ops": [cfg["futuro"], cfg["pasado"], cfg["saludo"]], "ok": cfg["futuro"]},
+        {"n": 9, "t": "Condicional", "r": f"Selecciona la estructura condicional en {nombre}:", "ops": [cfg["condicional"], cfg["gracias"], cfg["numeros"]], "ok": cfg["condicional"]},
+        {"n": 10, "t": "Nativo", "r": f"Elige la expresión nativa en {nombre}:", "ops": [cfg["nativo"], cfg["manana"], cfg["identidad"]], "ok": cfg["nativo"]},
     ]
 
     return {
         "nombre": nombre,
-        "codigo": entry["codigo"],
-        "saludo": entry["saludo"],
-        "frase": entry["frase"],
-        "numeros": entry["numeros"],
-        "niveles": niveles_armados,
-        "juegos": juegos_10,
+        "codigo": cfg["codigo"],
+        "saludo": cfg["saludo"],
+        "frase": cfg["frase"],
+        "numeros": cfg["numeros"],
+        "vocab_extra": cfg["vocab_extra"],
+        "niveles": niveles_compilados,
+        "juegos": juegos_adaptados,
     }
 
-CURSOS_INDEX = {item["nombre"]: construir_curso_completo(item) for item in CATALOGO_IDIOMAS}
+BASE_CURSOS = {item["nombre"]: compilar_idioma(item) for item in IDIOMAS_CONFIG}
 
-def generar_respuesta_consulta(idioma, texto, modo="profesor"):
-    curso = CURSOS_INDEX.get(idioma) or CURSOS_INDEX["Inglés"]
-    consulta = (texto or "").strip()
-    modo_limpio = "buscador" if (modo or "").strip().lower() == "buscador" else "profesor"
+def validar_clave_usuario(clave_recibida):
+    limpia = (clave_recibida or "").strip().upper()
+    return limpia in CLAVES_PERMITIDAS
 
-    if not consulta:
-        return f"[{idioma} · {modo_limpio.upper()}] Escribe tu pregunta o palabra sobre {idioma}."
+def responder_consulta_idioma(idioma, pregunta, modo="profesor"):
+    curso = BASE_CURSOS.get(idioma) or BASE_CURSOS["Inglés"]
+    texto = (pregunta or "").strip()
+    modo_ok = "buscador" if (modo or "").strip().lower() == "buscador" else "profesor"
 
-    if API_KEY_IA:
-        prompt = (
-            f"Actúa como profesor experto de {idioma}. Responde de forma clara y directa a: {consulta}"
-            if modo_limpio == "profesor"
-            else f"Actúa como buscador de {idioma}. Explica '{consulta}' y da un ejemplo concreto en {idioma}."
+    if not texto:
+        return f"[{idioma} · {modo_ok.upper()}] Escribe una pregunta o palabra sobre {idioma}."
+
+    if CLAVE_GEMINI:
+        instruccion = (
+            f"Actúa como profesor experto de {idioma}. Responde de manera clara, estructurada y directa sobre: {texto}"
+            if modo_ok == "profesor"
+            else f"Actúa como buscador de {idioma}. Explica '{texto}' con su uso y un ejemplo real en {idioma}."
         )
-        endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_IA}:generateContent?key={API_KEY_IA}"
-        payload = json.dumps({
-            "contents": [{"parts": [{"text": prompt}]}]
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_GEMINI}:generateContent?key={CLAVE_GEMINI}"
+        cuerpo = json.dumps({
+            "contents": [{"parts": [{"text": instruccion}]}]
         }).encode("utf-8")
-        req = urllib.request.Request(
-            endpoint,
-            data=payload,
+        peticion = urllib.request.Request(
+            url,
+            data=cuerpo,
             headers={"Content-Type": "application/json"},
             method="POST",
         )
         try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                partes = data.get("candidates", [{}])[0].get("content", {}).get("parts", [])
+            with urllib.request.urlopen(peticion, timeout=10) as respuesta_http:
+                datos = json.loads(respuesta_http.read().decode("utf-8"))
+                partes = datos.get("candidates", [{}])[0].get("content", {}).get("parts", [])
                 if partes and partes[0].get("text"):
                     return partes[0]["text"].strip()
         except Exception:
             pass
 
-    limpio = re.sub(r"\s+", " ", consulta)
-    if modo_limpio == "buscador":
+    clave_buscada = texto.lower()
+    for esp, trad in curso.get("vocab_extra", {}).items():
+        if esp in clave_buscada or clave_buscada in esp:
+            return (
+                f"[{modo_ok.upper()} · {idioma.upper()}]\n"
+                f"Coincidencia directa: '{esp}' -> '{trad}'\n"
+                f"Ejemplo en contexto: '{curso['frase']}'."
+            )
+
+    texto_limpio = re.sub(r"\s+", " ", texto)
+    if modo_ok == "buscador":
         return (
             f"[BUSCADOR · {idioma.upper()}]\n"
-            f"Término buscado: {limpio}\n"
-            f"Referencia del idioma: '{curso['frase']}' | Saludo: '{curso['saludo']}' | Números: '{curso['numeros']}'."
+            f"Consulta: {texto_limpio}\n"
+            f"Base del idioma -> Saludo: '{curso['saludo']}' | Números: '{curso['numeros']}' | Frase: '{curso['frase']}'."
         )
     return (
         f"[PROFESOR · {idioma.upper()}]\n"
-        f"Pregunta: {limpio}\n"
-        f"Respuesta: Practica '{limpio}' dentro del contexto de {idioma}, apoyándote en '{curso['frase']}' y avanzando rama por rama."
+        f"Duda: {texto_limpio}\n"
+        f"Explicación: En {idioma}, trabaja esta idea apoyándote en estructuras reales como '{curso['frase']}' y avanza rama por rama."
     )
 
-HTML_TEMPLATE = """<!doctype html>
+HTML_PAGINA = """<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -899,7 +1111,7 @@ html, body { margin: 0; padding: 0; background: #09090b; color: #f4f4f5; font-fa
 header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #000000; border-bottom: 1px solid #27272a; position: sticky; top: 0; z-index: 25; }
 .brand-title { font-size: 14px; font-weight: 800; letter-spacing: 0.6px; color: #ffffff; }
 select { background: #18181b; color: #ffffff; border: 1px solid #52525b; padding: 7px 10px; font-size: 13px; font-weight: 700; max-width: 56%; }
-.main-wrap { max-width: 760px; margin: 0 auto; padding: 14px 14px 56px; }
+.main-wrap { max-width: 760px; margin: 0 auto; padding: 14px 14px 58px; }
 .card { background: #111114; border: 1px solid #27272a; padding: 14px; margin-bottom: 14px; }
 .card-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #a1a1aa; border-bottom: 1px solid #27272a; padding-bottom: 8px; margin-bottom: 10px; }
 .panel-nota { background: #09090b; border-left: 3px solid #ffffff; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; line-height: 1.45; white-space: pre-line; color: #e4e4e7; }
@@ -920,15 +1132,17 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 .bienvenida-caja { font-size: 24px; font-weight: 900; text-transform: uppercase; border-top: 2px solid #ffffff; border-bottom: 2px solid #ffffff; padding: 14px 10px; margin-bottom: 10px; color: #ffffff; }
 .creacion-sub { font-size: 14px; font-weight: 600; color: #d4d4d8; letter-spacing: 0.8px; margin-bottom: 16px; }
 .dueno-corner { position: fixed; right: 12px; bottom: 8px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #a1a1aa; background: #09090b; padding: 2px 6px; z-index: 35; }
+.error-banner { color: #ffffff; background: #27272a; border: 1px solid #71717a; padding: 8px 12px; margin-top: 10px; font-size: 13px; font-weight: 700; max-width: 320px; width: 100%; }
 </style>
 </head>
 <body>
 
 <div id="viewAcceso" class="modal-screen">
-    <div style="font-size:14px;font-weight:800;letter-spacing:1px;margin-bottom:10px;color:#e4e4e7">C-PRE "LENGUAJES" · ACCESO</div>
-    <input type="text" id="inputClave" placeholder="Escribe CPRE2026" autocapitalize="characters" autocorrect="off" style="max-width:320px">
-    <button onclick="procesarAcceso()" style="max-width:320px">ENTRAR</button>
-    <div id="errorClave" style="color:#d4d4d8;font-weight:700;margin-top:10px;display:none">Código incorrecto. Usa CPRE2026.</div>
+    <div style="font-size:14px;font-weight:800;letter-spacing:1px;margin-bottom:8px;color:#ffffff">C-PRE "LENGUAJES" · ACCESO</div>
+    <div style="font-size:12px;color:#a1a1aa;margin-bottom:10px">Escriba la clave de acceso (ejemplo: CPRE2026 o VIP100)</div>
+    <input type="text" id="inputClave" placeholder="Escriba su clave aquí..." autocapitalize="characters" autocorrect="off" style="max-width:320px">
+    <button type="button" id="btnEntrarAcceso" onclick="validarEntradaDirecta()" style="max-width:320px">ENTRAR</button>
+    <div id="errorClave" class="error-banner hidden-view">Clave inválida. Escriba CPRE2026 o VIP100.</div>
 </div>
 
 <div id="viewBienvenida" class="modal-screen hidden-view">
@@ -941,8 +1155,8 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
     <div class="card" style="max-width:460px;width:100%">
         <h3>INICIO DE NIVEL</h3>
         <p style="font-weight:700;color:#ffffff">¿Quieres saltarte el modo Easy? Para saltártelo tienes que presentar la evaluación. Si pasas la evaluación puedes pasar al nivel Medium.</p>
-        <button onclick="elegirSaltarEasy()">SALTAR MODO EASY (PRESENTAR EVALUACIÓN)</button>
-        <button class="sec" onclick="elegirModoEasyNormal()">EMPEZAR EN MODO EASY</button>
+        <button type="button" onclick="elegirSaltarEasy()">SALTAR MODO EASY (PRESENTAR EVALUACIÓN)</button>
+        <button type="button" class="sec" onclick="elegirModoEasyNormal()">EMPEZAR EN MODO EASY</button>
     </div>
 </div>
 
@@ -968,7 +1182,7 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 
         <div id="panelPreparacion" class="panel-nota">
             <strong>¿Estás preparado para la evaluación?</strong>
-            <button onclick="iniciarExamen(false)">SÍ, PRESENTAR EVALUACIÓN (20 PTS)</button>
+            <button type="button" onclick="iniciarExamen(false)">SÍ, PRESENTAR EVALUACIÓN (20 PTS)</button>
         </div>
         <div id="panelExamen" class="hidden-view"></div>
     </section>
@@ -1001,8 +1215,8 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
         </div>
         <input type="text" id="inputPreguntaLibre" placeholder="Pregunta o busca lo que quieras del idioma actual...">
         <div class="grid-2">
-            <button onclick="enviarConsultaLibre('profesor')">PREGUNTAR</button>
-            <button class="sec" onclick="enviarConsultaLibre('buscador')">BUSCAR</button>
+            <button type="button" onclick="enviarConsultaLibre('profesor')">PREGUNTAR</button>
+            <button type="button" class="sec" onclick="enviarConsultaLibre('buscador')">BUSCAR</button>
         </div>
         <div id="respuestaConsultaLibre" class="panel-nota">Escribe tu consulta sobre el idioma seleccionado.</div>
     </section>
@@ -1010,16 +1224,33 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 
 <div class="dueno-corner">DUEÑO CELSO</div>
 
-<script>
-const CURSOS = __CURSOS_JSON__;
-const CLAVE_ESPERADA = __CLAVE_JSON__;
-const NOTICIAS = __NOTICIAS_JSON__;
-const TACTICAS = __TACTICAS_JSON__;
-const TRUCOS = __TRUCOS_JSON__;
-const NIVELES = __NIVELES_JSON__;
-const ORDINALES = __ORDINALES_JSON__;
+<script id="datosCursosJson" type="application/json">__CURSOS_JSON__</script>
+<script id="datosClavesJson" type="application/json">__CLAVES_JSON__</script>
+<script id="datosNoticiasJson" type="application/json">__NOTICIAS_JSON__</script>
+<script id="datosTacticasJson" type="application/json">__TACTICAS_JSON__</script>
+<script id="datosTrucosJson" type="application/json">__TRUCOS_JSON__</script>
+<script id="datosNivelesJson" type="application/json">__NIVELES_JSON__</script>
+<script id="datosOrdinalesJson" type="application/json">__ORDINALES_JSON__</script>
 
-let estado = {
+<script>
+function leerJsonSeguro(idElemento, respaldo) {
+    try {
+        var el = document.getElementById(idElemento);
+        return el ? JSON.parse(el.textContent) : respaldo;
+    } catch (e) {
+        return respaldo;
+    }
+}
+
+var CURSOS = leerJsonSeguro("datosCursosJson", {});
+var CLAVES_VALIDAS = leerJsonSeguro("datosClavesJson", ["CPRE2026", "VIP100"]);
+var NOTICIAS = leerJsonSeguro("datosNoticiasJson", []);
+var TACTICAS = leerJsonSeguro("datosTacticasJson", []);
+var TRUCOS = leerJsonSeguro("datosTrucosJson", []);
+var NIVELES = leerJsonSeguro("datosNivelesJson", ["Easy", "Medium", "Hard", "Expert/Nativo"]);
+var ORDINALES = leerJsonSeguro("datosOrdinalesJson", {});
+
+var estado = {
     idioma: "Inglés",
     nivelIdx: 0,
     ramaIdx: 0,
@@ -1028,42 +1259,32 @@ let estado = {
     ultimaNota: 0
 };
 
-function cargarSelectorIdiomas() {
-    const sel = document.getElementById("selectIdioma");
-    sel.innerHTML = "";
-    Object.keys(CURSOS).forEach((nombre) => {
-        const opt = document.createElement("option");
-        opt.value = nombre;
-        opt.textContent = nombre;
-        if (nombre === estado.idioma) opt.selected = true;
-        sel.appendChild(opt);
-    });
-}
+function validarEntradaDirecta() {
+    var campo = document.getElementById("inputClave");
+    var errorEl = document.getElementById("errorClave");
+    var valor = (campo ? campo.value : "").trim().toUpperCase();
 
-function mostrarFelicitacion(mensaje) {
-    const el = document.getElementById("bannerFelicitacion");
-    el.textContent = mensaje;
-    el.classList.remove("hidden-view");
-}
+    var listaAceptada = Array.isArray(CLAVES_VALIDAS) ? CLAVES_VALIDAS : ["CPRE2026", "VIP100"];
+    var esValida = listaAceptada.indexOf(valor) !== -1 || valor === "CPRE2026" || valor === "VIP100";
 
-function procesarAcceso() {
-    const ing = document.getElementById("inputClave").value.trim().toUpperCase();
-    if (ing !== String(CLAVE_ESPERADA).trim().toUpperCase()) {
-        document.getElementById("errorClave").style.display = "block";
+    if (!esValida) {
+        errorEl.textContent = "Clave inválida. Escriba CPRE2026 o VIP100.";
+        errorEl.classList.remove("hidden-view");
         return;
     }
-    document.getElementById("errorClave").style.display = "none";
+
+    errorEl.classList.add("hidden-view");
     document.getElementById("viewAcceso").classList.add("hidden-view");
 
-    const bienvenida = document.getElementById("viewBienvenida");
+    var bienvenida = document.getElementById("viewBienvenida");
     bienvenida.classList.remove("hidden-view");
-    let seg = 3;
-    const actualizarCuenta = () => {
-        document.getElementById("lblCuenta").textContent = `Cargando... ${seg}s`;
+    var seg = 3;
+    var actualizarCuenta = function() {
+        document.getElementById("lblCuenta").textContent = "Cargando... " + seg + "s";
     };
     actualizarCuenta();
 
-    const timer = setInterval(() => {
+    var timer = setInterval(function() {
         seg -= 1;
         if (seg > 0) {
             actualizarCuenta();
@@ -1073,6 +1294,24 @@ function procesarAcceso() {
             document.getElementById("viewDecisionEasy").classList.remove("hidden-view");
         }
     }, 1000);
+}
+
+function cargarSelectorIdiomas() {
+    var sel = document.getElementById("selectIdioma");
+    sel.innerHTML = "";
+    Object.keys(CURSOS).forEach(function(nombre) {
+        var opt = document.createElement("option");
+        opt.value = nombre;
+        opt.textContent = nombre;
+        if (nombre === estado.idioma) opt.selected = true;
+        sel.appendChild(opt);
+    });
+}
+
+function mostrarFelicitacion(mensaje) {
+    var el = document.getElementById("bannerFelicitacion");
+    el.textContent = mensaje;
+    el.classList.remove("hidden-view");
 }
 
 function elegirModoEasyNormal() {
@@ -1098,37 +1337,39 @@ function alCambiarIdioma() {
 }
 
 function renderizarDiarios() {
-    const hoy = new Date();
-    const inicioAno = new Date(hoy.getFullYear(), 0, 0);
-    const diaDelAno = Math.floor((hoy - inicioAno) / 86400000);
+    var hoy = new Date();
+    var inicioAno = new Date(hoy.getFullYear(), 0, 0);
+    var diaDelAno = Math.floor((hoy - inicioAno) / 86400000);
     document.getElementById("metaDia").textContent = hoy.toLocaleDateString("es-VE");
-    document.getElementById("boxNoticia").textContent = NOTICIAS[diaDelAno % NOTICIAS.length];
-    document.getElementById("boxTactica").textContent = TACTICAS[diaDelAno % TACTICAS.length];
-    document.getElementById("boxTruco").textContent = TRUCOS[diaDelAno % TRUCOS.length];
+    if (NOTICIAS.length) document.getElementById("boxNoticia").textContent = NOTICIAS[diaDelAno % NOTICIAS.length];
+    if (TACTICAS.length) document.getElementById("boxTactica").textContent = TACTICAS[diaDelAno % TACTICAS.length];
+    if (TRUCOS.length) document.getElementById("boxTruco").textContent = TRUCOS[diaDelAno % TRUCOS.length];
 }
 
 function renderizarApp() {
-    const nombreNivel = NIVELES[estado.nivelIdx];
-    const ramas = CURSOS[estado.idioma].niveles[nombreNivel];
-    const rama = ramas[estado.ramaIdx % ramas.length];
+    var curso = CURSOS[estado.idioma];
+    if (!curso) return;
+    var nombreNivel = NIVELES[estado.nivelIdx];
+    var ramas = curso.niveles[nombreNivel];
+    var rama = ramas[estado.ramaIdx % ramas.length];
 
     document.getElementById("metaNivel").textContent = nombreNivel;
-    document.getElementById("metaRama").textContent = `${rama.numero}/${ramas.length}`;
-    document.getElementById("metaNota").textContent = `${estado.ultimaNota}/20`;
+    document.getElementById("metaRama").textContent = rama.numero + "/" + ramas.length;
+    document.getElementById("metaNota").textContent = estado.ultimaNota + "/20";
     document.getElementById("tituloRamaActual").textContent = rama.titulo;
-    document.getElementById("subtemaRamaActual").textContent = `Tema de la rama: ${rama.subtema}`;
+    document.getElementById("subtemaRamaActual").textContent = "Tema de la rama: " + rama.subtema;
 
-    const clasesCont = document.getElementById("contenedorClases");
+    var clasesCont = document.getElementById("contenedorClases");
     clasesCont.innerHTML = "";
-    rama.clases.forEach((lineaClase) => {
-        const div = document.createElement("div");
+    rama.clases.forEach(function(lineaClase) {
+        var div = document.createElement("div");
         div.className = "clase-card";
         div.textContent = lineaClase;
         clasesCont.appendChild(div);
     });
 
-    document.getElementById("esquemaRamaActual").textContent = `ESQUEMA:\n${rama.esquema}`;
-    document.getElementById("ejemplosRamaActual").textContent = `EJEMPLOS:\n• ${rama.ejemplos.join("\n• ")}`;
+    document.getElementById("esquemaRamaActual").textContent = "ESQUEMA:\n" + rama.esquema;
+    document.getElementById("ejemplosRamaActual").textContent = "EJEMPLOS:\n• " + rama.ejemplos.join("\n• ");
 
     document.getElementById("panelExamen").classList.add("hidden-view");
     document.getElementById("panelPreparacion").classList.remove("hidden-view");
@@ -1138,130 +1379,133 @@ function renderizarApp() {
 }
 
 function iniciarExamen(esSaltoEasy) {
-    const nombreNivel = NIVELES[estado.nivelIdx];
-    const ramas = CURSOS[estado.idioma].niveles[nombreNivel];
-    const rama = ramas[estado.ramaIdx % ramas.length];
+    var nombreNivel = NIVELES[estado.nivelIdx];
+    var ramas = CURSOS[estado.idioma].niveles[nombreNivel];
+    var rama = ramas[estado.ramaIdx % ramas.length];
 
     document.getElementById("panelPreparacion").classList.add("hidden-view");
-    const panelEx = document.getElementById("panelExamen");
+    var panelEx = document.getElementById("panelExamen");
     panelEx.classList.remove("hidden-view");
 
-    let html = `<div class="examen-hoja">
-        <div class="card-meta">
-            <span>HOJA DE EXAMEN · ${estado.idioma.toUpperCase()}</span>
-            <span>TOTAL: 20 PTS</span>
-        </div>
-        <p style="font-weight:700;color:#ffffff">${esSaltoEasy ? "Evaluación para saltar Easy a Medium (aprueba desde 10/20)" : `${rama.titulo} — Aprueba desde 10/20`}</p>`;
+    var html = '<div class="examen-hoja">' +
+        '<div class="card-meta">' +
+        '<span>HOJA DE EXAMEN · ' + estado.idioma.toUpperCase() + '</span>' +
+        '<span>TOTAL: 20 PTS</span>' +
+        '</div>' +
+        '<p style="font-weight:700;color:#ffffff">' + (esSaltoEasy ? "Evaluación para saltar Easy a Medium (aprueba desde 10/20)" : rama.titulo + " — Aprueba desde 10/20") + '</p>';
 
-    rama.eval.forEach((preg, idx) => {
-        const tipoEtiqueta = preg.tipo.replace("_", " ");
-        html += `<div class="panel-nota"><strong>Pregunta ${preg.numero} (${preg.puntos} pts · ${tipoEtiqueta}):</strong><br>${preg.enunciado}<br>`;
+    rama.eval.forEach(function(preg, idx) {
+        var tipoEtiqueta = preg.tipo.replace("_", " ");
+        html += '<div class="panel-nota"><strong>Pregunta ' + preg.numero + ' (' + preg.puntos + ' pts · ' + tipoEtiqueta + '):</strong><br>' + preg.enunciado + '<br>';
         if (preg.tipo === "escribir") {
-            html += `<input type="text" id="resp_preg_${idx}" placeholder="Escribe tu respuesta...">`;
+            html += '<input type="text" id="resp_preg_' + idx + '" placeholder="Escribe tu respuesta...">';
         } else {
-            preg.opciones.forEach((op, j) => {
-                const seguro = op.replace(/"/g, "&quot;");
-                html += `<label style="display:block;margin:6px 0;cursor:pointer"><input type="radio" name="radio_preg_${idx}" value="${seguro}" ${j === 0 ? "checked" : ""}> ${op}</label>`;
+            preg.opciones.forEach(function(op, j) {
+                var seguro = op.replace(/"/g, "&quot;");
+                html += '<label style="display:block;margin:6px 0;cursor:pointer"><input type="radio" name="radio_preg_' + idx + '" value="' + seguro + '" ' + (j === 0 ? "checked" : "") + '> ' + op + '</label>';
             });
         }
-        html += `</div>`;
+        html += '</div>';
     });
 
-    html += `<button onclick="calificarExamen(${esSaltoEasy ? "true" : "false"})">ENTREGAR EVALUACIÓN</button></div>`;
+    html += '<button type="button" onclick="calificarExamen(' + (esSaltoEasy ? "true" : "false") + ')">ENTREGAR EVALUACIÓN</button></div>';
     panelEx.innerHTML = html;
 }
 
 function calificarExamen(esSaltoEasy) {
-    const nombreNivel = NIVELES[estado.nivelIdx];
-    const ramas = CURSOS[estado.idioma].niveles[nombreNivel];
-    const rama = ramas[estado.ramaIdx % ramas.length];
+    var nombreNivel = NIVELES[estado.nivelIdx];
+    var ramas = CURSOS[estado.idioma].niveles[nombreNivel];
+    var rama = ramas[estado.ramaIdx % ramas.length];
 
-    let puntaje = 0;
-    let desglose = "";
+    var puntaje = 0;
+    var desglose = "";
 
-    rama.eval.forEach((preg, idx) => {
-        let acerto = false;
+    rama.eval.forEach(function(preg, idx) {
+        var acerto = false;
         if (preg.tipo === "escribir") {
-            const elem = document.getElementById(`resp_preg_${idx}`);
-            const val = (elem ? elem.value : "").trim().toLowerCase();
-            acerto = preg.aceptadas.some((acc) => val === acc || (acc.length > 3 && val.includes(acc)));
+            var elem = document.getElementById("resp_preg_" + idx);
+            var val = (elem ? elem.value : "").trim().toLowerCase();
+            acerto = preg.aceptadas.some(function(acc) {
+                return val === acc || (acc.length > 3 && val.indexOf(acc) !== -1);
+            });
         } else {
-            const marcado = document.querySelector(`input[name="radio_preg_${idx}"]:checked`);
+            var marcado = document.querySelector('input[name="radio_preg_' + idx + '"]:checked');
             acerto = Boolean(marcado && marcado.value === preg.correcta);
         }
 
         if (acerto) {
             puntaje += preg.puntos;
-            desglose += `• Pregunta ${preg.numero}: +${preg.puntos} pts (Aprobada)\n`;
+            desglose += "• Pregunta " + preg.numero + ": +" + preg.puntos + " pts (Aprobada)\n";
         } else {
-            desglose += `• Pregunta ${preg.numero}: 0 pts (-${preg.puntos} pts) -> ${preg.explicacion}\n`;
+            desglose += "• Pregunta " + preg.numero + ": 0 pts (-" + preg.puntos + " pts) -> " + preg.explicacion + "\n";
         }
     });
 
     estado.ultimaNota = puntaje;
-    document.getElementById("metaNota").textContent = `${puntaje}/20`;
-    const porcentaje = Math.max(0, Math.min(100, Math.round((puntaje / 20) * 100)));
-    const aprobo = puntaje >= 10;
+    document.getElementById("metaNota").textContent = puntaje + "/20";
+    var porcentaje = Math.max(0, Math.min(100, Math.round((puntaje / 20) * 100)));
+    var aprobo = puntaje >= 10;
 
-    let cierreHtml = "";
+    var cierreHtml = "";
     if (esSaltoEasy) {
         if (aprobo) {
             estado.nivelIdx = 1;
             estado.ramaIdx = 0;
-            mostrarFelicitacion(`Felicitaciones, nuevo nivel: pasaste a Medium con ${puntaje}/20.`);
-            cierreHtml = `<button onclick="renderizarApp()">CONTINUAR EN MEDIUM</button>`;
+            mostrarFelicitacion("Felicitaciones, nuevo nivel: pasaste a Medium con " + puntaje + "/20.");
+            cierreHtml = '<button type="button" onclick="renderizarApp()">CONTINUAR EN MEDIUM</button>';
         } else {
             estado.nivelIdx = 0;
             estado.ramaIdx = 0;
-            cierreHtml = `<p style="font-weight:700;color:#ffffff">No alcanzaste los 10/20 (${puntaje}/20). Debes ver las 7 ramas del modo Easy desde la Rama 1.</p><button onclick="renderizarApp()">IR A RAMA 1 DE EASY</button>`;
+            cierreHtml = '<p style="font-weight:700;color:#ffffff">No alcanzaste los 10/20 (' + puntaje + '/20). Debes ver las 7 ramas del modo Easy desde la Rama 1.</p><button type="button" onclick="renderizarApp()">IR A RAMA 1 DE EASY</button>';
         }
     } else if (aprobo) {
         if (estado.ramaIdx + 1 < ramas.length) {
             estado.ramaIdx += 1;
-            const ord = ORDINALES[String(estado.ramaIdx + 1)] || `${estado.ramaIdx + 1}a`;
-            mostrarFelicitacion(`Felicitaciones, ${ord} rama del modo ${nombreNivel} (Nota: ${puntaje}/20).`);
-            cierreHtml = `<button onclick="renderizarApp()">PASAR A LA SIGUIENTE RAMA</button>`;
+            var ord = ORDINALES[String(estado.ramaIdx + 1)] || (estado.ramaIdx + 1) + "a";
+            mostrarFelicitacion("Felicitaciones, " + ord + " rama del modo " + nombreNivel + " (Nota: " + puntaje + "/20).");
+            cierreHtml = '<button type="button" onclick="renderizarApp()">PASAR A LA SIGUIENTE RAMA</button>';
         } else if (estado.nivelIdx + 1 < NIVELES.length) {
             estado.nivelIdx += 1;
             estado.ramaIdx = 0;
-            mostrarFelicitacion(`Felicitaciones, nuevo nivel: ${NIVELES[estado.nivelIdx]} (Nota: ${puntaje}/20).`);
-            cierreHtml = `<button onclick="renderizarApp()">ENTRAR AL NUEVO NIVEL</button>`;
+            mostrarFelicitacion("Felicitaciones, nuevo nivel: " + NIVELES[estado.nivelIdx] + " (Nota: " + puntaje + "/20).");
+            cierreHtml = '<button type="button" onclick="renderizarApp()">ENTRAR AL NUEVO NIVEL</button>';
         } else {
-            mostrarFelicitacion(`Felicitaciones, completaste ${nombreNivel} con ${puntaje}/20.`);
-            cierreHtml = `<button onclick="estado.ramaIdx=0;renderizarApp()">REINICIAR RAMAS DEL NIVEL</button>`;
+            mostrarFelicitacion("Felicitaciones, completaste " + nombreNivel + " con " + puntaje + "/20.");
+            cierreHtml = '<button type="button" onclick="estado.ramaIdx=0;renderizarApp()">REINICIAR RAMAS DEL NIVEL</button>';
         }
     } else {
-        cierreHtml = `<p style="font-weight:700;color:#ffffff">Reprobaste con ${puntaje}/20 (se aprueba desde 10/20). Repasa las clases de esta rama e inténtalo de nuevo.</p><button class="sec" onclick="iniciarExamen(false)">REPETIR EVALUACIÓN</button>`;
+        cierreHtml = '<p style="font-weight:700;color:#ffffff">Reprobaste con ' + puntaje + '/20 (se aprueba desde 10/20). Repasa las clases de esta rama e inténtalo de nuevo.</p><button type="button" class="sec" onclick="iniciarExamen(false)">REPETIR EVALUACIÓN</button>';
     }
 
-    document.getElementById("panelExamen").innerHTML = `<div class="examen-hoja">
-        <h3>CALIFICACIÓN: ${puntaje}/20 (${aprobo ? "APROBADO" : "REPROBADO"})</h3>
-        <div class="barra-fondo"><div class="barra-relleno" style="width:${porcentaje}%"></div></div>
-        <div class="panel-nota">${desglose}</div>
-        ${cierreHtml}
-    </div>`;
+    document.getElementById("panelExamen").innerHTML = '<div class="examen-hoja">' +
+        '<h3>CALIFICACIÓN: ' + puntaje + '/20 (' + (aprobo ? "APROBADO" : "REPROBADO") + ')</h3>' +
+        '<div class="barra-fondo"><div class="barra-relleno" style="width:' + porcentaje + '%"></div></div>' +
+        '<div class="panel-nota">' + desglose + '</div>' +
+        cierreHtml +
+        '</div>';
 }
 
 function renderizarJuego() {
-    const juegos = CURSOS[estado.idioma].juegos;
-    const actual = juegos[estado.juegoIdx % juegos.length];
+    var juegos = CURSOS[estado.idioma].juegos;
+    var actual = juegos[estado.juegoIdx % juegos.length];
 
-    document.getElementById("tituloJuegoActual").textContent = `JUEGO ${actual.n}/10 · ${actual.t}`;
+    document.getElementById("tituloJuegoActual").textContent = "JUEGO " + actual.n + "/10 · " + actual.t;
     document.getElementById("enunciadoJuegoActual").textContent = actual.r;
 
-    const contOps = document.getElementById("opcionesJuegoActual");
+    var contOps = document.getElementById("opcionesJuegoActual");
     contOps.innerHTML = "";
-    actual.ops.forEach((op) => {
-        const btn = document.createElement("button");
+    actual.ops.forEach(function(op) {
+        var btn = document.createElement("button");
+        btn.type = "button";
         btn.className = "sec";
         btn.textContent = op;
-        btn.onclick = () => {
+        btn.onclick = function() {
             if (op === actual.ok) {
                 estado.puntosJuego += 10;
-                document.getElementById("metaJuegoPts").textContent = `PTS: ${estado.puntosJuego}`;
-                document.getElementById("feedbackJuegoActual").textContent = `¡Correcto! +10 pts.`;
+                document.getElementById("metaJuegoPts").textContent = "PTS: " + estado.puntosJuego;
+                document.getElementById("feedbackJuegoActual").textContent = "¡Correcto! +10 pts.";
             } else {
-                document.getElementById("feedbackJuegoActual").textContent = `Incorrecto. Respuesta correcta: ${actual.ok}.`;
+                document.getElementById("feedbackJuegoActual").textContent = "Incorrecto. Respuesta correcta: " + actual.ok + ".";
             }
             estado.juegoIdx += 1;
             renderizarJuego();
@@ -1271,12 +1515,12 @@ function renderizarJuego() {
 }
 
 async function enviarConsultaLibre(modo) {
-    const texto = document.getElementById("inputPreguntaLibre").value.trim();
+    var texto = document.getElementById("inputPreguntaLibre").value.trim();
     if (!texto) return;
-    document.getElementById("metaModoConsulta").textContent = `MODO: ${modo.toUpperCase()}`;
+    document.getElementById("metaModoConsulta").textContent = "MODO: " + modo.toUpperCase();
     document.getElementById("respuestaConsultaLibre").textContent = "Consultando...";
     try {
-        const res = await fetch("/api/consulta", {
+        var res = await fetch("/api/consulta", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -1285,12 +1529,19 @@ async function enviarConsultaLibre(modo) {
                 modo: modo
             })
         });
-        const data = await res.json();
+        var data = await res.json();
         document.getElementById("respuestaConsultaLibre").textContent = data.respuesta;
     } catch (err) {
         document.getElementById("respuestaConsultaLibre").textContent = "Error al consultar.";
     }
 }
+
+document.getElementById("inputClave").addEventListener("keydown", function(ev) {
+    if (ev.key === "Enter") {
+        ev.preventDefault();
+        validarEntradaDirecta();
+    }
+});
 
 cargarSelectorIdiomas();
 renderizarApp();
@@ -1301,26 +1552,46 @@ renderizarApp();
 
 @app.route("/")
 def index():
+    cursos_serializados = json.dumps(BASE_CURSOS, ensure_ascii=False).replace("</", "<\\/")
+    claves_serializadas = json.dumps(CLAVES_PERMITIDAS, ensure_ascii=False).replace("</", "<\\/")
+    noticias_serializadas = json.dumps(NOTICIAS_DIARIAS, ensure_ascii=False).replace("</", "<\\/")
+    tacticas_serializadas = json.dumps(TACTICAS_DIARIAS, ensure_ascii=False).replace("</", "<\\/")
+    trucos_serializados = json.dumps(TRUCOS_DIARIOS, ensure_ascii=False).replace("</", "<\\/")
+    niveles_serializados = json.dumps(NIVELES_SISTEMA, ensure_ascii=False).replace("</", "<\\/")
+    ordinales_serializados = json.dumps(ORDINALES_RAMAS, ensure_ascii=False).replace("</", "<\\/")
+
     return (
-        HTML_TEMPLATE
-        .replace("__CURSOS_JSON__", json.dumps(CURSOS_INDEX, ensure_ascii=False))
-        .replace("__CLAVE_JSON__", json.dumps(CODIGO_ACCESO, ensure_ascii=False))
-        .replace("__NOTICIAS_JSON__", json.dumps(NOTICIAS_DIARIAS, ensure_ascii=False))
-        .replace("__TACTICAS_JSON__", json.dumps(TACTICAS_DIARIAS, ensure_ascii=False))
-        .replace("__TRUCOS_JSON__", json.dumps(TRUCOS_DIARIOS, ensure_ascii=False))
-        .replace("__NIVELES_JSON__", json.dumps(ORDEN_NIVELES, ensure_ascii=False))
-        .replace("__ORDINALES_JSON__", json.dumps(NOMBRES_RAMA_ORDINAL, ensure_ascii=False))
+        HTML_PAGINA
+        .replace("__CURSOS_JSON__", cursos_serializados)
+        .replace("__CLAVES_JSON__", claves_serializadas)
+        .replace("__NOTICIAS_JSON__", noticias_serializadas)
+        .replace("__TACTICAS_JSON__", tacticas_serializadas)
+        .replace("__TRUCOS_JSON__", trucos_serializados)
+        .replace("__NIVELES_JSON__", niveles_serializados)
+        .replace("__ORDINALES_JSON__", ordinales_serializados)
     )
+
+@app.route("/api/validar", methods=["POST"])
+def api_validar():
+    datos = request.get_json(silent=True) or {}
+    ok = validar_clave_usuario(datos.get("clave"))
+    return jsonify({
+        "ok": ok,
+        "mensaje": "Acceso concedido." if ok else "Clave inválida.",
+    })
 
 @app.route("/api/consulta", methods=["POST"])
 def api_consulta():
-    payload = request.get_json(silent=True) or {}
-    respuesta = generar_respuesta_consulta(
-        payload.get("idioma"),
-        payload.get("texto"),
-        payload.get("modo"),
+    datos = request.get_json(silent=True) or {}
+    respuesta = responder_consulta_idioma(
+        datos.get("idioma"),
+        datos.get("texto"),
+        datos.get("modo"),
     )
-    return jsonify({"respuesta": respuesta, "timestamp": datetime.utcnow().isoformat()})
+    return jsonify({
+        "respuesta": respuesta,
+        "timestamp": datetime.utcnow().isoformat(),
+    })
 
 if __name__ == "__main__":
-    app.run(host=HOST_APP, port=PUERTO_APP)
+    app.run(host=HOST_SERVIDOR, port=PUERTO_SERVIDOR)
