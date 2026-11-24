@@ -1520,7 +1520,7 @@ def index():
         .replace("__CURSOS_JSON__", cursos_serializados)
         .replace("__NOTICIAS_JSON__", noticias_serializadas)
         .replace("__TACTICAS_JSON__", tacticas_serializadas)
-        .replace("__TRUCOS_JSON__", trucos_serializados)
+        .replace("__TRUCOS_JSON__", trucos_serializadas)
         .replace("__NIVELES_JSON__", niveles_serializados)
         .replace("__ORDINALES_JSON__", ordinales_serializados)
     )
