@@ -237,273 +237,273 @@ IDIOMAS_CONFIG = [
     {
         "nombre": "Chino Mandarín",
         "codigo": "zh",
-        "saludo": "你好 (Nǐ hǎo)",
-        "listo": "我准备好了 (Wǒ zhǔnbèi hǎo le)",
-        "manana": "早上好 (Zǎoshang hǎo)",
-        "gracias": "谢谢 (Xièxie)",
-        "frase": "我每天说中文 (Wǒ měitiān shuō zhōngwén)",
-        "numeros": "一, 二, 三, 四, 五 (yī, èr, sān, sì, wǔ)",
-        "identidad": "我是学生 (Wǒ shì xuésheng)",
-        "pasado": "昨天我练习了中文 (Zuótiān wǒ liànxí le zhōngwén)",
-        "futuro": "我明天要学习 (Wǒ míngtiān yào xuéxí)",
-        "continuo": "我正在学习 (Wǒ zhèngzài xuéxí)",
-        "comparativo": "练习比死记更好 (Liànxí bǐ sǐjì gèng hǎo)",
-        "modal": "你应该每天练习 (Nǐ yīnggāi měitiān liànxí)",
-        "perfecto": "我学过中文 (Wǒ xuéguò zhōngwén)",
-        "condicional": "如果我练习就会进步 (Rúguǒ wǒ liànxí jiù huì jìnbù)",
-        "pasiva": "中文被广泛使用 (Zhōngwén bèi guǎngfàn shǐyòng)",
-        "compuesto": "坚持每天练习 (Jiānchí měitiān liànxí)",
-        "modismo": "小菜一碟 (Xiǎo cài yī dié)",
-        "nativo": "我很快就能掌握窍门 (Wǒ hěn kuài jiù néng zhǎngwò qiàomén)",
+        "saludo": "Ni hao",
+        "listo": "Wo zhunbei hao le",
+        "manana": "Zaoshang hao",
+        "gracias": "Xiexie",
+        "frase": "Wo meitian shuo zhongwen",
+        "numeros": "yi, er, san, si, wu",
+        "identidad": "Wo shi xuesheng",
+        "pasado": "Zuotian wo lianxi le zhongwen",
+        "futuro": "Wo mingtian yao xuexi",
+        "continuo": "Wo zhengzai xuexi",
+        "comparativo": "Lianxi bi siji genghao",
+        "modal": "Ni yinggai meitian lianxi",
+        "perfecto": "Wo xueguo zhongwen",
+        "condicional": "Ruguo wo lianxi jiu hui jinbu",
+        "pasiva": "Zhongwen bei guangfan shiyong",
+        "compuesto": "Jianchi meitian lianxi",
+        "modismo": "Xiao cai yi die",
+        "nativo": "Wo hen kuai jiu neng zhangwo qiaomen",
         "vocab_extra": {
-            "hola": "你好 (Nǐ hǎo)",
-            "gracias": "谢谢 (Xièxie)",
-            "uno": "一 (Yī)",
-            "dos": "二 (Èr)",
-            "tres": "三 (Sān)",
-            "agua": "水 (Shuǐ)",
-            "casa": "家 (Jiā)",
-            "libro": "书 (Shū)",
-            "amigo": "朋友 (Péngyou)",
-            "tiempo": "时间 (Shíjiān)",
+            "hola": "Ni hao",
+            "gracias": "Xiexie",
+            "uno": "yi",
+            "dos": "er",
+            "tres": "san",
+            "agua": "shui",
+            "casa": "jia",
+            "libro": "shu",
+            "amigo": "pengyou",
+            "tiempo": "shijian",
         },
     },
     {
         "nombre": "Japonés",
         "codigo": "ja",
-        "saludo": "こんにちは (Konnichiwa)",
-        "listo": "じゅんびできました (Junbi dekimashita)",
-        "manana": "おはようございます (Ohayō gozaimasu)",
-        "gracias": "ありがとう (Arigatō)",
-        "frase": "まいにちにほんごをれんしゅうします (Mainichi nihongo o renshū shimasu)",
-        "numeros": "いち、に、さん、し、ご (ichi, ni, san, shi, go)",
-        "identidad": "わたしはがくせいです (Watashi wa gakusei desu)",
-        "pasado": "きのうにほんごをれんしゅうしました (Kinō nihongo o renshū shimashita)",
-        "futuro": "あしたべんきょうします (Ashita benkyō shimasu)",
-        "continuo": "いまべんきょうしています (Ima benkyō shite imasu)",
-        "comparativo": "れんしゅうはあんきよりいいです (Renshū wa anki yori ii desu)",
-        "modal": "まいにちれんしゅうすべきです (Mainichi renshū subeki desu)",
-        "perfecto": "にほんごをべんきょうしたことがあります (Nihongo o benkyō shita koto ga arimasu)",
-        "condicional": "れんしゅうすればじょうたつします (Renshū sureba jōtatsu shimasu)",
-        "pasiva": "にほんごはにほんではなされます (Nihongo wa nihon de hanasaremasu)",
-        "compuesto": "コツコツつづける (Kotsukotsu tsuzukeru)",
-        "modismo": "おちゃのこさいさい (Ocha-no-ko saisai)",
-        "nativo": "すぐこつをつかみます (Sugu kotsu o tsukamimasu)",
+        "saludo": "Konnichiwa",
+        "listo": "Junbi dekimashita",
+        "manana": "Ohayo gozaimasu",
+        "gracias": "Arigato",
+        "frase": "Mainichi nihongo o renshu shimasu",
+        "numeros": "ichi, ni, san, shi, go",
+        "identidad": "Watashi wa gakusei desu",
+        "pasado": "Kino nihongo o renshu shimashita",
+        "futuro": "Ashita benkyo shimasu",
+        "continuo": "Ima benkyo shite imasu",
+        "comparativo": "Renshu wa anki yori ii desu",
+        "modal": "Mainichi renshu subeki desu",
+        "perfecto": "Nihongo o benkyo shita koto ga arimasu",
+        "condicional": "Renshu sureba jotatsu shimasu",
+        "pasiva": "Nihongo wa nihon de hanasaremasu",
+        "compuesto": "Kotsukotsu tsuzukeru",
+        "modismo": "Ocha-no-ko saisai",
+        "nativo": "Sugu kotsu o tsukamimasu",
         "vocab_extra": {
-            "hola": "こんにちは (Konnichiwa)",
-            "gracias": "ありがとう (Arigatō)",
-            "uno": "いち (Ichi)",
-            "dos": "に (Ni)",
-            "tres": "さん (San)",
-            "agua": "みず (Mizu)",
-            "casa": "いえ (Ie)",
-            "libro": "ほん (Hon)",
-            "amigo": "ともだち (Tomodachi)",
-            "tiempo": "じかん (Jikan)",
+            "hola": "Konnichiwa",
+            "gracias": "Arigato",
+            "uno": "ichi",
+            "dos": "ni",
+            "tres": "san",
+            "agua": "mizu",
+            "casa": "ie",
+            "libro": "hon",
+            "amigo": "tomodachi",
+            "tiempo": "jikan",
         },
     },
     {
         "nombre": "Coreano",
         "codigo": "ko",
-        "saludo": "안녕하세요 (Annyeonghaseyo)",
-        "listo": "준비됐어요 (Junbi-dwaesseo-yo)",
-        "manana": "좋은 아침 (Jo-eun achim)",
-        "gracias": "감사합니다 (Gamsahamnida)",
-        "frase": "매일 한국어를 연습해요 (Maeil han-gu-geo-reul yeon-seup-hae-yo)",
-        "numeros": "하나, 둘, 셋, 넷, 다섯 (ha-na, dul, set, net, da-seot)",
-        "identidad": "저는 학생이에요 (Jeo-neun hak-saeng-i-e-yo)",
-        "pasado": "어제 한국어를 공부했어요 (Eo-je han-gu-geo-reul gong-bu-haet-seo-yo)",
-        "futuro": "내일 공부할 거예요 (Nae-il gong-bu-hal geo-ye-yo)",
-        "continuo": "지금 배우고 있어요 (Ji-geum bae-u-go is-seo-yo)",
-        "comparativo": "연습이 암기보다 좋아요 (Yeon-seub-i am-gi-bo-da jo-a-yo)",
-        "modal": "매일 연습해야 해요 (Maeil yeon-seub-hae-ya hae-yo)",
-        "perfecto": "한국어를 공부해 봤어요 (Han-gu-geo-reul gong-bu-hae bwat-seo-yo)",
-        "condicional": "연습하면 실력이 늘어요 (Yeon-seub-ha-myeon sil-ryeog-i neur-eo-yo)",
-        "pasiva": "한국어는 한국에서 사용돼요 (Han-gu-geo-neun han-guk-e-seo sa-yong-dwae-yo)",
-        "compuesto": "꾸준히 이어가기 (Kku-jun-hi i-eo-ga-gi)",
-        "modismo": "식은 죽 먹기 (Sik-eun juk meok-gi)",
-        "nativo": "요령을 금방 잡아요 (Yo-ryeong-eul geum-bang jab-a-yo)",
+        "saludo": "Annyeonghaseyo",
+        "listo": "Junbi-dwaesseo-yo",
+        "manana": "Jo-eun achim",
+        "gracias": "Gamsahamnida",
+        "frase": "Maeil han-gu-geo-reul yeon-seup-hae-yo",
+        "numeros": "ha-na, dul, set, net, da-seot",
+        "identidad": "Jeo-neun hak-saeng-i-e-yo",
+        "pasado": "Eo-je han-gu-geo-reul gong-bu-haet-seo-yo",
+        "futuro": "Nae-il gong-bu-hal geo-ye-yo",
+        "continuo": "Ji-geum bae-u-go is-seo-yo",
+        "comparativo": "Yeon-seub-i am-gi-bo-da jo-a-yo",
+        "modal": "Maeil yeon-seub-hae-ya hae-yo",
+        "perfecto": "Han-gu-geo-reul gong-bu-hae bwat-seo-yo",
+        "condicional": "Yeon-seub-ha-myeon sil-ryeog-i neur-eo-yo",
+        "pasiva": "Han-gu-geo-neun han-guk-e-seo sa-yong-dwae-yo",
+        "compuesto": "Kku-jun-hi i-eo-ga-gi",
+        "modismo": "Sik-eun juk meok-gi",
+        "nativo": "Yo-ryeong-eul geum-bang jab-a-yo",
         "vocab_extra": {
-            "hola": "안녕하세요 (Annyeonghaseyo)",
-            "gracias": "감사합니다 (Gamsahamnida)",
-            "uno": "하나 (Hana)",
-            "dos": "둘 (Dul)",
-            "tres": "셋 (Set)",
-            "agua": "물 (Mul)",
-            "casa": "집 (Jip)",
-            "libro": "책 (Chaek)",
-            "amigo": "친구 (Chingu)",
-            "tiempo": "시간 (Sigan)",
+            "hola": "Annyeonghaseyo",
+            "gracias": "Gamsahamnida",
+            "uno": "hana",
+            "dos": "dul",
+            "tres": "set",
+            "agua": "mul",
+            "casa": "jip",
+            "libro": "chaek",
+            "amigo": "chingu",
+            "tiempo": "sigan",
         },
     },
     {
         "nombre": "Árabe",
         "codigo": "ar",
-        "saludo": "مرحباً (Marhaban)",
-        "listo": "أنا مستعد (Anā musta'idd)",
-        "manana": "صباح الخير (Sabāh al-khayr)",
-        "gracias": "شكراً (Shukran)",
-        "frase": "أتدرب على العربية كل يوم (Atadarrab 'alā al-'arabiyyah kull yawm)",
-        "numeros": "واحد، اثنان، ثلاثة، أربعة، خمسة (wāḥid, ithnān, thalāthah, arba'ah, khamsah)",
-        "identidad": "أنا طالب (Anā ṭālib)",
-        "pasado": "تدربت بالأمس على العربية (Tadarrabtu bil-ams 'alā al-'arabiyyah)",
-        "futuro": "سأدرس غداً (Sa'adrusu ghadan)",
-        "continuo": "أتعلم الآن (Ata'allam al-ān)",
-        "comparativo": "التدريب أفضل من الحفظ (At-tadrīb afḍal min al-ḥifẓ)",
-        "modal": "يجب أن تتدرب يومياً (Yajibu an tatadarraba yawmiyyan)",
-        "perfecto": "لقد درست العربية (Laqad darastu al-'arabiyyah)",
-        "condicional": "إذا تدربت فسأتقن (Idhā tadarrabtu fa-sa'utqin)",
-        "pasiva": "تُستخدم العربية في بلدان كثيرة (Tustakhdam al-'arabiyyah fī buldān kathīrah)",
-        "compuesto": "الاستمرار بثبات (Al-istimrār bi-thabāt)",
-        "modismo": "أسهل من شربة ماء (Ashal min shurbat mā')",
-        "nativo": "أفهم الفكرة بسرعة (Afham al-fikrah bi-sur'ah)",
+        "saludo": "Marhaban",
+        "listo": "Ana musta'idd",
+        "manana": "Sabah al-khayr",
+        "gracias": "Shukran",
+        "frase": "Atadarrab ala al-arabiyyah kull yawm",
+        "numeros": "wahid, ithnan, thalathah, arba'ah, khamsah",
+        "identidad": "Ana talib",
+        "pasado": "Tadarrabtu bil-ams ala al-arabiyyah",
+        "futuro": "Sa'adrusu ghadan",
+        "continuo": "Ata'allam al-an",
+        "comparativo": "At-tadrib afdal min al-hifz",
+        "modal": "Yajibu an tatadarraba yawmiyyan",
+        "perfecto": "Laqad darastu al-arabiyyah",
+        "condicional": "Idha tadarrabtu fa-sa'utqin",
+        "pasiva": "Tustakhdam al-arabiyyah fi buldan kathirah",
+        "compuesto": "Al-istimrar bi-thabat",
+        "modismo": "Ashal min shurbat ma'",
+        "nativo": "Afham al-fikrah bi-sur'ah",
         "vocab_extra": {
-            "hola": "مرحباً (Marhaban)",
-            "gracias": "شكراً (Shukran)",
-            "uno": "واحد (Wāḥid)",
-            "dos": "اثنان (Ithnān)",
-            "tres": "ثلاثة (Thalāthah)",
-            "agua": "ماء (Mā')",
-            "casa": "بيت (Bayt)",
-            "libro": "كتاب (Kitāb)",
-            "amigo": "صديق (Ṣadīq)",
-            "tiempo": "وقت (Waqt)",
+            "hola": "Marhaban",
+            "gracias": "Shukran",
+            "uno": "wahid",
+            "dos": "ithnan",
+            "tres": "thalathah",
+            "agua": "ma'",
+            "casa": "bayt",
+            "libro": "kitab",
+            "amigo": "sadiq",
+            "tiempo": "waqt",
         },
     },
     {
         "nombre": "Ruso",
         "codigo": "ru",
-        "saludo": "Привет (Privet)",
-        "listo": "Я готов (Ya gotov)",
-        "manana": "Доброе утро (Dóbroye útro)",
-        "gracias": "Спасибо (Spasíbo)",
-        "frase": "Я каждый день учу русский (Ya kázhdyy den' uchú rússkiy)",
-        "numeros": "Один, два, три, четыре, пять (odín, dva, tri, chetýre, pyat')",
-        "identidad": "Я студент (Ya studént)",
-        "pasado": "Вчера я занимался русским (Vcherá ya zanimálsya rússkim)",
-        "futuro": "Завтра я буду заниматься (Závtra ya búdu zanimát'sya)",
-        "continuo": "Я сейчас учусь (Ya seychás uchús')",
-        "comparativo": "Практика лучше зубрёжки (Práktika lúchshe zubryózhki)",
-        "modal": "Нужно заниматься каждый день (Núzhno zanimát'sya kázhdyy den')",
-        "perfecto": "Я уже учил русский (Ya uzhé uchíl rússkiy)",
-        "condicional": "Если буду заниматься, улучшу (Yésli búdu zanimát'sya, ulúchshu)",
-        "pasiva": "Русский язык изучают везде (Rússkiy yazýk izucháyut vezdé)",
-        "compuesto": "Сохранять темп занятий (Sokhranyát' temp zanyátiy)",
-        "modismo": "Проще простого (Próshche prostógo)",
-        "nativo": "Быстро схватываю суть (Býstro skhvátývayu sut')",
+        "saludo": "Privet",
+        "listo": "Ya gotov",
+        "manana": "Dobroye utro",
+        "gracias": "Spasibo",
+        "frase": "Ya kazhdyy den uchu russkiy",
+        "numeros": "odin, dva, tri, chetyre, pyat",
+        "identidad": "Ya student",
+        "pasado": "Vchera ya zanimalsya russkim",
+        "futuro": "Zavtra ya budu zanimatsya",
+        "continuo": "Ya seychas uchus",
+        "comparativo": "Praktika luchshe zubryozhki",
+        "modal": "Nuzhno zanimatsya kazhdyy den",
+        "perfecto": "Ya uzhe uchil russkiy",
+        "condicional": "Esli budu zanimatsya, uluchshu",
+        "pasiva": "Russkiy yazyk izuchayut vezde",
+        "compuesto": "Sokranyat temp zanyatiy",
+        "modismo": "Proshche prostogo",
+        "nativo": "Bystro skhvatyvayu sut",
         "vocab_extra": {
-            "hola": "Привет (Privet)",
-            "gracias": "Спасибо (Spasíbo)",
-            "uno": "Один (Odín)",
-            "dos": "Два (Dva)",
-            "tres": "Три (Tri)",
-            "agua": "Вода (Vodá)",
-            "casa": "Дом (Dom)",
-            "libro": "Книга (Kníga)",
-            "amigo": "Друг (Drug)",
-            "tiempo": "Время (Vrémya)",
+            "hola": "Privet",
+            "gracias": "Spasibo",
+            "uno": "odin",
+            "dos": "dva",
+            "tres": "tri",
+            "agua": "voda",
+            "casa": "dom",
+            "libro": "kniga",
+            "amigo": "drug",
+            "tiempo": "vremya",
         },
     },
     {
         "nombre": "Hindi",
         "codigo": "hi",
-        "saludo": "नमस्ते (Namaste)",
-        "listo": "मैं तैयार हूँ (Main taiyaar hoon)",
-        "manana": "सुप्रभात (Suprabhat)",
-        "gracias": "धन्यवाद (Dhanyavaad)",
-        "frase": "मैं रोज़ हिंदी का अभ्यास करता हूँ (Main roz Hindi ka abhyaas karta hoon)",
-        "numeros": "एक, दो, तीन, चार, पाँच (ek, do, teen, chaar, paanch)",
-        "identidad": "मैं छात्र हूँ (Main chhatra hoon)",
-        "pasado": "कल मैंने हिंदी का अभ्यास किया (Kal maine Hindi ka abhyaas kiya)",
-        "futuro": "मैं कल पढ़ाई करूँगा (Main kal padhaai karoonga)",
-        "continuo": "मैं अभी सीख रहा हूँ (Main abhi seekh raha hoon)",
-        "comparativo": "अभ्यास रटने से बेहतर है (Abhyaas ratne se behtar hai)",
-        "modal": "तुम्हें रोज़ अभ्यास करना चाहिए (Tumhein roz abhyaas karna chahiye)",
-        "perfecto": "मैंने हिंदी सीखी है (Maine Hindi seekhi hai)",
-        "condicional": "अगर मैं अभ्यास करूँगा तो सुधार होगा (Agar main abhyaas karoonga to sudhaar hoga)",
-        "pasiva": "हिंदी भारत में बोली जाती है (Hindi Bharat mein boli jaati hai)",
-        "compuesto": "निरंतर अभ्यास बनाए रखना (Nirantar abhyaas banaaye rakhna)",
-        "modismo": "बायें हाथ का खेल (Baayein haath ka khel)",
-        "nativo": "मैं जल्दी तरीका समझ लेता हूँ (Main jaldi tareeqa samajh leta hoon)",
+        "saludo": "Namaste",
+        "listo": "Main taiyaar hoon",
+        "manana": "Suprabhat",
+        "gracias": "Dhanyavaad",
+        "frase": "Main roz Hindi ka abhyaas karta hoon",
+        "numeros": "ek, do, teen, chaar, paanch",
+        "identidad": "Main chhatra hoon",
+        "pasado": "Kal maine Hindi ka abhyaas kiya",
+        "futuro": "Main kal padhaai karoonga",
+        "continuo": "Main abhi seekh raha hoon",
+        "comparativo": "Abhyaas ratne se behtar hai",
+        "modal": "Tumhein roz abhyaas karna chahiye",
+        "perfecto": "Maine Hindi seekhi hai",
+        "condicional": "Agar main abhyaas karoonga to sudhaar hoga",
+        "pasiva": "Hindi Bharat mein boli jaati hai",
+        "compuesto": "Nirantar abhyaas banaaye rakhna",
+        "modismo": "Baayein haath ka khel",
+        "nativo": "Main jaldi tareeqa samajh leta hoon",
         "vocab_extra": {
-            "hola": "नमस्ते (Namaste)",
-            "gracias": "धन्यवाद (Dhanyavaad)",
-            "uno": "एक (Ek)",
-            "dos": "दो (Do)",
-            "tres": "तीन (Teen)",
-            "agua": "पानी (Paani)",
-            "casa": "घर (Ghar)",
-            "libro": "किताब (Kitaab)",
-            "amigo": "दोस्त (Dost)",
-            "tiempo": "समय (Samay)",
+            "hola": "Namaste",
+            "gracias": "Dhanyavaad",
+            "uno": "ek",
+            "dos": "do",
+            "tres": "teen",
+            "agua": "paani",
+            "casa": "ghar",
+            "libro": "kitaab",
+            "amigo": "dost",
+            "tiempo": "samay",
         },
     },
     {
         "nombre": "Bengalí",
         "codigo": "bn",
-        "saludo": "নমস্কার (Nomoshkar)",
-        "listo": "আমি প্রস্তুত (Ami prostut)",
-        "manana": "শুভ সকাল (Shubho shokal)",
-        "gracias": "ধন্যবাদ (Dhonnobad)",
-        "frase": "আমি প্রতিদিন বাংলা অনুশীলন করি (Ami protidin Bangla onushilon kori)",
-        "numeros": "এক, দুই, তিন, চার, পাঁচ (ek, dui, tin, char, pach)",
-        "identidad": "আমি ছাত্র (Ami chhatro)",
-        "pasado": "গতকাল আমি বাংলা অনুশীলন করেছি (Gotokal ami Bangla onushilon korechi)",
-        "futuro": "আমি আগামীকাল পড়ব (Ami agamikal porbo)",
-        "continuo": "আমি এখন শিখছি (Ami ekhon shikhchi)",
-        "comparativo": "অনুশীলন মুখস্থ করার চেয়ে ভালো (Onushilon mukhostho korar cheye bhalo)",
-        "modal": "তোমার প্রতিদিন অনুশীলন করা উচিত (Tomar protidin onushilon kora uchit)",
-        "perfecto": "আমি বাংলা শিখেছি (Ami Bangla shikhechi)",
-        "condicional": "আমি অনুশীলন করলে উন্নতি করব (Ami onushilon korle unnoti korbo)",
-        "pasiva": "বাংলা ভাষা ব্যাপকভাবে বলা হয় (Bangla bhasha byapokbhabe bola hoy)",
-        "compuesto": "নিয়মিত অনুশীলন বজায় রাখা (Niyomito onushilon bojay rakha)",
-        "modismo": "বাম হাতের খেল (Bam hater khel)",
-        "nativo": "আমি দ্রুত কৌশল ধরে ফেলি (Ami druto koushol dhore feli)",
+        "saludo": "Nomoshkar",
+        "listo": "Ami prostut",
+        "manana": "Shubho shokal",
+        "gracias": "Dhonnobad",
+        "frase": "Ami protidin Bangla onushilon kori",
+        "numeros": "ek, dui, tin, char, pach",
+        "identidad": "Ami chhatro",
+        "pasado": "Gotokal ami Bangla onushilon korechi",
+        "futuro": "Ami agamikal porbo",
+        "continuo": "Ami ekhon shikhchi",
+        "comparativo": "Onushilon mukhostho korar cheye bhalo",
+        "modal": "Tomar protidin onushilon kora uchit",
+        "perfecto": "Ami Bangla shikhechi",
+        "condicional": "Ami onushilon korle unnoti korbo",
+        "pasiva": "Bangla bhasha byapokbhabe bola hoy",
+        "compuesto": "Niyomito onushilon bojay rakha",
+        "modismo": "Bam hater khel",
+        "nativo": "Ami druto koushol dhore feli",
         "vocab_extra": {
-            "hola": "নমস্কার (Nomoshkar)",
-            "gracias": "ধন্যবাদ (Dhonnobad)",
-            "uno": "এক (Ek)",
-            "dos": "দুই (Dui)",
-            "tres": "তিন (Tin)",
-            "agua": "জল (Jol)",
-            "casa": "বাড়ি (Bari)",
-            "libro": "বই (Boi)",
-            "amigo": "বন্ধু (Bondhu)",
-            "tiempo": "সময় (Shomoy)",
+            "hola": "Nomoshkar",
+            "gracias": "Dhonnobad",
+            "uno": "ek",
+            "dos": "dui",
+            "tres": "tin",
+            "agua": "jol",
+            "casa": "bari",
+            "libro": "boi",
+            "amigo": "bondhu",
+            "tiempo": "shomoy",
         },
     },
     {
         "nombre": "Turco",
         "codigo": "tr",
         "saludo": "Merhaba",
-        "listo": "Hazırım",
-        "manana": "Günaydın",
-        "gracias": "Teşekkürler",
-        "frase": "Her gün Türkçe pratik yapıyorum",
-        "numeros": "Bir, iki, üç, dört, beş",
-        "identidad": "Ben öğrenciyim",
-        "pasado": "Dün Türkçe çalıştım",
-        "futuro": "Yarın çalışacağım",
-        "continuo": "Şu an öğreniyorum",
+        "listo": "Hazirim",
+        "manana": "Gunaydin",
+        "gracias": "Tesekkurler",
+        "frase": "Her gun Turkce pratik yapiyorum",
+        "numeros": "bir, iki, uc, dort, bes",
+        "identidad": "Ben ogrenciyim",
+        "pasado": "Dun Turkce calistim",
+        "futuro": "Yarin calisacagim",
+        "continuo": "Su an ogreniyorum",
         "comparativo": "Pratik yapmak ezberlemekten iyidir",
-        "modal": "Her gün pratik yapmalısın",
-        "perfecto": "Türkçe öğrendim",
-        "condicional": "Pratik yaparsam gelişirim",
-        "pasiva": "Türkçe Türkiye'de konuşulur",
-        "compuesto": "Düzenli çalışmayı sürdürmek",
-        "modismo": "Çocuk oyuncağı",
-        "nativo": "İşin mantığını çabuk kaparım",
+        "modal": "Her gun pratik yapmalisin",
+        "perfecto": "Turkce ogrendim",
+        "condicional": "Pratik yaparsam gelisirim",
+        "pasiva": "Turkce Turkiye'de konusurul",
+        "compuesto": "Duzenli calismayi surdurmek",
+        "modismo": "Cocuk oyuncagi",
+        "nativo": "Isin mantigini cabuk kaparim",
         "vocab_extra": {
             "hola": "Merhaba",
-            "gracias": "Teşekkürler",
-            "uno": "Bir",
-            "dos": "İki",
-            "tres": "Üç",
-            "agua": "Su",
-            "casa": "Ev",
-            "libro": "Kitap",
-            "amigo": "Arkadaş",
-            "tiempo": "Zaman",
+            "gracias": "Tesekkurler",
+            "uno": "bir",
+            "dos": "iki",
+            "tres": "uc",
+            "agua": "su",
+            "casa": "ev",
+            "libro": "kitap",
+            "amigo": "arkadas",
+            "tiempo": "zaman",
         },
     },
     {
@@ -514,7 +514,7 @@ IDIOMAS_CONFIG = [
         "manana": "Goedemorgen",
         "gracias": "Dank je",
         "frase": "Ik oefen elke dag Nederlands",
-        "numeros": "Een, twee, drie, vier, vijf",
+        "numeros": "een, twee, drie, vier, vijf",
         "identidad": "Ik ben student",
         "pasado": "Gisteren heb ik Nederlands geoefend",
         "futuro": "Ik ga morgen studeren",
@@ -530,225 +530,225 @@ IDIOMAS_CONFIG = [
         "vocab_extra": {
             "hola": "Hallo",
             "gracias": "Dank je",
-            "uno": "Een",
-            "dos": "Twee",
-            "tres": "Drie",
-            "agua": "Water",
-            "casa": "Huis",
-            "libro": "Boek",
-            "amigo": "Vriend",
-            "tiempo": "Tijd",
+            "uno": "een",
+            "dos": "twee",
+            "tres": "drie",
+            "agua": "water",
+            "casa": "huis",
+            "libro": "boek",
+            "amigo": "vriend",
+            "tiempo": "tijd",
         },
     },
     {
         "nombre": "Polaco",
         "codigo": "pl",
-        "saludo": "Cześć",
+        "saludo": "Czesc",
         "listo": "Jestem gotowy",
-        "manana": "Dzień dobry",
-        "gracias": "Dziękuję",
-        "frase": "Codziennie ćwiczę polski",
-        "numeros": "Jeden, dwa, trzy, cztery, pięć",
+        "manana": "Dzien dobry",
+        "gracias": "Dziekuje",
+        "frase": "Codziennie cwicze polski",
+        "numeros": "jeden, dwa, trzy, cztery, piec",
         "identidad": "Jestem studentem",
-        "pasado": "Wczoraj ćwiczyłem polski",
-        "futuro": "Będę się uczyć jutro",
-        "continuo": "Teraz się uczę",
-        "comparativo": "Ćwiczenie jest lepsze niż wkuwanie",
-        "modal": "Powinieneś ćwiczyć codziennie",
-        "perfecto": "Uczyłem się polskiego",
-        "condicional": "Jeśli będę ćwiczyć, zrobię postęp",
-        "pasiva": "Po polsku mówi się w Polsce",
-        "compuesto": "Utrzymać stałe tempo",
-        "modismo": "Bułka z masłem",
-        "nativo": "Szybko łapię sedno",
+        "pasado": "Wczoraj cwiczylem polski",
+        "futuro": "Bede sie uczyc jutro",
+        "continuo": "Teraz sie ucze",
+        "comparativo": "Cwiczenie jest lepsze niz wkuwanie",
+        "modal": "Powinienes cwiczc codziennie",
+        "perfecto": "Uczylem sie polskiego",
+        "condicional": "Jesli bede cwiczc, zrobie postep",
+        "pasiva": "Po polsku mowi sie w Polsce",
+        "compuesto": "Utrzymac stale tempo",
+        "modismo": "Bulka z maslem",
+        "nativo": "Szybko lapie sedno",
         "vocab_extra": {
-            "hola": "Cześć",
-            "gracias": "Dziękuję",
-            "uno": "Jeden",
-            "dos": "Dwa",
-            "tres": "Trzy",
-            "agua": "Woda",
-            "casa": "Dom",
-            "libro": "Książka",
-            "amigo": "Przyjaciel",
-            "tiempo": "Czas",
+            "hola": "Czesc",
+            "gracias": "Dziekuje",
+            "uno": "jeden",
+            "dos": "dwa",
+            "tres": "trzy",
+            "agua": "woda",
+            "casa": "dom",
+            "libro": "ksiazka",
+            "amigo": "przyjaciel",
+            "tiempo": "czas",
         },
     },
     {
         "nombre": "Sueco",
         "codigo": "sv",
         "saludo": "Hej",
-        "listo": "Jag är redo",
+        "listo": "Jag ar redo",
         "manana": "God morgon",
         "gracias": "Tack",
-        "frase": "Jag övar svenska varje dag",
-        "numeros": "Ett, två, tre, fyra, fem",
-        "identidad": "Jag är student",
-        "pasado": "Igår övade jag svenska",
+        "frase": "Jag ovar svenska varje dag",
+        "numeros": "ett, tva, tre, fyra, fem",
+        "identidad": "Jag ar student",
+        "pasado": "Igar ovade jag svenska",
         "futuro": "Jag ska plugga imorgon",
-        "continuo": "Jag lär mig just nu",
-        "comparativo": "Att öva är bättre än att rabbla",
-        "modal": "Du bör öva varje dag",
+        "continuo": "Jag lar mig just nu",
+        "comparativo": "Att ova ar battre an att rabbla",
+        "modal": "Du bor ova varje dag",
         "perfecto": "Jag har studerat svenska",
-        "condicional": "Om jag övar så blir jag bättre",
+        "condicional": "Om jag ovar sa blir jag battre",
         "pasiva": "Svenska talas i Sverige",
-        "compuesto": "Hålla jämnt tempo",
+        "compuesto": "Halla jamnt tempo",
         "modismo": "En barnlek",
-        "nativo": "Jag får kläm på det snabbt",
+        "nativo": "Jag far klam pa det snabbt",
         "vocab_extra": {
             "hola": "Hej",
             "gracias": "Tack",
-            "uno": "Ett",
-            "dos": "Två",
-            "tres": "Tre",
-            "agua": "Vatten",
-            "casa": "Hus",
-            "libro": "Bok",
-            "amigo": "Vän",
-            "tiempo": "Tid",
+            "uno": "ett",
+            "dos": "tva",
+            "tres": "tre",
+            "agua": "vatten",
+            "casa": "hus",
+            "libro": "bok",
+            "amigo": "van",
+            "tiempo": "tid",
         },
     },
     {
         "nombre": "Griego",
         "codigo": "el",
-        "saludo": "Γεια σου (Geia sou)",
-        "listo": "Είμαι έτοιμος (Eímai étoimos)",
-        "manana": "Καλημέρα (Kaliméra)",
-        "gracias": "Ευχαριστώ (Efcharistó)",
-        "frase": "Εξασκούμαι στα ελληνικά κάθε μέρα (Exaskoúmai sta elliniká káthe méra)",
-        "numeros": "Ένα, δύο, τρία, τέσσερα, πέντε (éna, dýo, tría, téssera, pénte)",
-        "identidad": "Είμαι φοιτητής (Eímai foititís)",
-        "pasado": "Χθες εξασκήθηκα στα ελληνικά (Chthés exaskíthika sta elliniká)",
-        "futuro": "Θα διαβάσω αύριο (Tha diaváso ávrio)",
-        "continuo": "Μαθαίνω τώρα (Mathaíno tóra)",
-        "comparativo": "Η εξάσκηση είναι καλύτερη από την αποστήθιση (I exáskisi eínai kalýteri apó tin apostíthisi)",
-        "modal": "Πρέπει να εξασκείσαι καθημερινά (Prépei na exaskeíse kathimeriná)",
-        "perfecto": "Έχω σπουδάσει ελληνικά (Écho spoudásei elliniká)",
-        "condicional": "Αν εξασκηθώ, θα βελτιωθώ (An exaskithó, tha veltiotthó)",
-        "pasiva": "Τα ελληνικά μιλιούνται στην Ελλάδα (Ta elliniká milioúnte stin Elláda)",
-        "compuesto": "Διατήρηση σταθερού ρυθμού (Diatírisi statheroú rythmoú)",
-        "modismo": "Παιχνιδάκι (Paichnidáki)",
-        "nativo": "Πιάνω γρήγορα το νόημα (Piáno grígora to nóima)",
+        "saludo": "Geia sou",
+        "listo": "Eimai etoimos",
+        "manana": "Kalimera",
+        "gracias": "Efcharisto",
+        "frase": "Exaskoumai sta ellinika kathe mera",
+        "numeros": "ena, dyo, tria, tessera, pente",
+        "identidad": "Eimai foititis",
+        "pasado": "Chthes exaskithika sta ellinika",
+        "futuro": "Tha diavaso avrio",
+        "continuo": "Mathaino tora",
+        "comparativo": "I exaskisi einai kalyteri apo tin apostithisi",
+        "modal": "Prepei na exaskeise kathimerina",
+        "perfecto": "Echo spoudasei ellinika",
+        "condicional": "An exaskitho, tha veltiottho",
+        "pasiva": "Ta ellinika miliounte stin Ellada",
+        "compuesto": "Diatirisi statherou rythmou",
+        "modismo": "Paichnidaki",
+        "nativo": "Piano grigora to noima",
         "vocab_extra": {
-            "hola": "Γεια σου (Geia sou)",
-            "gracias": "Ευχαριστώ (Efcharistó)",
-            "uno": "Ένα (Éna)",
-            "dos": "Δύο (Dýo)",
-            "tres": "Τρία (Tría)",
-            "agua": "Νερό (Neró)",
-            "casa": "Σπίτι (Spíti)",
-            "libro": "Βιβλίο (Vivlío)",
-            "amigo": "Φίλος (Fílos)",
-            "tiempo": "Χρόνος (Chrónos)",
+            "hola": "Geia sou",
+            "gracias": "Efcharisto",
+            "uno": "ena",
+            "dos": "dyo",
+            "tres": "tria",
+            "agua": "nero",
+            "casa": "spiti",
+            "libro": "vivlio",
+            "amigo": "filos",
+            "tiempo": "chronos",
         },
     },
     {
         "nombre": "Vietnamita",
         "codigo": "vi",
-        "saludo": "Xin chào",
-        "listo": "Tôi đã sẵn sàng",
-        "manana": "Chào buổi sáng",
-        "gracias": "Cảm ơn",
-        "frase": "Tôi luyện tiếng Việt mỗi ngày",
-        "numeros": "Một, hai, ba, bốn, năm",
-        "identidad": "Tôi là sinh viên",
-        "pasado": "Hôm qua tôi đã luyện tiếng Việt",
-        "futuro": "Ngày mai tôi sẽ học",
-        "continuo": "Tôi đang học ngay bây giờ",
-        "comparativo": "Luyện tập tốt hơn học vẹt",
-        "modal": "Bạn nên luyện tập mỗi ngày",
-        "perfecto": "Tôi đã học tiếng Việt",
-        "condicional": "Nếu tôi luyện tập, tôi sẽ tiến bộ",
-        "pasiva": "Tiếng Việt được nói ở Việt Nam",
-        "compuesto": "Duy trì nhịp độ đều đặn",
-        "modismo": "Dễ như ăn kẹo",
-        "nativo": "Tôi nắm bắt cách làm rất nhanh",
+        "saludo": "Xin chao",
+        "listo": "Toi da san sang",
+        "manana": "Chao buoi sang",
+        "gracias": "Cam on",
+        "frase": "Toi luyen tieng Viet moi ngay",
+        "numeros": "mot, hai, ba, bon, nam",
+        "identidad": "Toi la sinh vien",
+        "pasado": "Hom qua toi da luyen tieng Viet",
+        "futuro": "Ngay mai toi se hoc",
+        "continuo": "Toi dang hoc ngay bay gio",
+        "comparativo": "Luyen tap tot hon hoc vet",
+        "modal": "Ban nen luyen tap moi ngay",
+        "perfecto": "Toi da hoc tieng Viet",
+        "condicional": "Neu toi luyen tap, toi se tien bo",
+        "pasiva": "Tieng Viet duoc noi o Viet Nam",
+        "compuesto": "Duy tri nhip do deu dan",
+        "modismo": "De nhu an keo",
+        "nativo": "Toi nam bat cach lam rat nhanh",
         "vocab_extra": {
-            "hola": "Xin chào",
-            "gracias": "Cảm ơn",
-            "uno": "Một",
-            "dos": "Hai",
-            "tres": "Ba",
-            "agua": "Nước",
-            "casa": "Nhà",
-            "libro": "Sách",
-            "amigo": "Bạn",
-            "tiempo": "Thời gian",
+            "hola": "Xin chao",
+            "gracias": "Cam on",
+            "uno": "mot",
+            "dos": "hai",
+            "tres": "ba",
+            "agua": "nuoc",
+            "casa": "nha",
+            "libro": "sach",
+            "amigo": "ban",
+            "tiempo": "thoi gian",
         },
     },
     {
         "nombre": "Persa",
         "codigo": "fa",
-        "saludo": "سلام (Salām)",
-        "listo": "آماده‌ام (Āmādeh-am)",
-        "manana": "صبح بخیر (Sobh be-kheyr)",
-        "gracias": "ممنون (Mamnoon)",
-        "frase": "هر روز فارسی تمرین می‌کنم (Har rooz Fārsi tamrīn mikonam)",
-        "numeros": "یک، دو، سه، چهار، پنج (yek, do, seh, chahār, panj)",
-        "identidad": "من دانشجو هستم (Man dāneshjoo hastam)",
-        "pasado": "دیروز فارسی تمرین کردم (Dīrooz Fārsi tamrīn kardam)",
-        "futuro": "فردا درس می‌خوانم (Fardā dars mikhānam)",
-        "continuo": "الان در حال یادگیری هستم (Alān dar hāl-e yādgīrī hastam)",
-        "comparativo": "تمرین کردن بهتر از حفظ کردن است (Tamrīn kardan behtar az hefz kardan ast)",
-        "modal": "باید هر روز تمرین کنی (Bāyad har rooz tamrīn konī)",
-        "perfecto": "فارسی خوانده‌ام (Fārsi khāndeh-am)",
-        "condicional": "اگر تمرین کنم پیشرفت می‌کنم (Agar tamrīn konam pīshraft mikonam)",
-        "pasiva": "فارسی در ایران صحبت می‌شود (Fārsi dar Īrān sohbat mīshavad)",
-        "compuesto": "حفظ پیوستگی در مطالعه (Hefz-e peyvastegī dar motāle'eh)",
-        "modismo": "مثل آب خوردن (Mesl-e āb khordan)",
-        "nativo": "زود قلق کار دستم می‌آید (Zood qoloq-e kār dastam mīāyad)",
+        "saludo": "Salam",
+        "listo": "Amadeh-am",
+        "manana": "Sobh be-kheyr",
+        "gracias": "Mamnoon",
+        "frase": "Har rooz Farsi tamrin mikonam",
+        "numeros": "yek, do, seh, chahar, panj",
+        "identidad": "Man daneshjoo hastam",
+        "pasado": "Dirooz Farsi tamrin kardam",
+        "futuro": "Farda dars mikhanam",
+        "continuo": "Alan dar hal-e yadgiri hastam",
+        "comparativo": "Tamrin kardan behtar az hefz kardan ast",
+        "modal": "Bayad har rooz tamrin koni",
+        "perfecto": "Farsi khandeh-am",
+        "condicional": "Agar tamrin konam pishraft mikonam",
+        "pasiva": "Farsi dar Iran sohbat mishavad",
+        "compuesto": "Hefz-e peyvastegi dar motale'eh",
+        "modismo": "Mesl-e ab khordan",
+        "nativo": "Zood qoloq-e kar dastam miayad",
         "vocab_extra": {
-            "hola": "سلام (Salām)",
-            "gracias": "ممنون (Mamnoon)",
-            "uno": "یک (Yek)",
-            "dos": "دو (Do)",
-            "tres": "سه (Seh)",
-            "agua": "آب (Āb)",
-            "casa": "خانه (Khāneh)",
-            "libro": "کتاب (Ketāb)",
-            "amigo": "دوست (Doost)",
-            "tiempo": "زمان (Zamān)",
+            "hola": "Salam",
+            "gracias": "Mamnoon",
+            "uno": "yek",
+            "dos": "do",
+            "tres": "seh",
+            "agua": "ab",
+            "casa": "khaneh",
+            "libro": "ketab",
+            "amigo": "doost",
+            "tiempo": "zaman",
         },
     },
 ]
 
 NOTICIAS_DIARIAS = [
-    "Noticia diaria (Inglés): Reading short headlines every morning builds natural recognition of real English phrases.",
-    "Noticia diaria (Inglés): Listening to short spoken clips and repeating them aloud trains clarity and rhythm.",
-    "Noticia diaria (Inglés): Writing three lines daily about your routine strengthens core verb usage.",
-    "Noticia diaria (Inglés): Learning expressions grouped by situation prevents mixing unrelated vocabulary.",
-    "Noticia diaria (Inglés): Reviewing missed exam questions turns weak spots into permanent knowledge.",
-    "Noticia diaria (Inglés): Practicing simple affirmative and negative sentences early speeds up conversation.",
-    "Noticia diaria (Inglés): Fifteen focused minutes every day outperforms cramming once a week.",
-    "Noticia diaria (Inglés): Paying attention to context helps you choose the exact phrase native speakers expect.",
-    "Noticia diaria (Inglés): Mastering numbers early helps with time, prices, dates, and daily communication.",
-    "Noticia diaria (Inglés): Advancing step by step from Easy to Expert builds solid long-term fluency.",
+    "Noticia diaria (Ingles): Reading short headlines every morning builds natural recognition of real English phrases.",
+    "Noticia diaria (Ingles): Listening to short spoken clips and repeating them aloud trains clarity and rhythm.",
+    "Noticia diaria (Ingles): Writing three lines daily about your routine strengthens core verb usage.",
+    "Noticia diaria (Ingles): Learning expressions grouped by situation prevents mixing unrelated vocabulary.",
+    "Noticia diaria (Ingles): Reviewing missed exam questions turns weak spots into permanent knowledge.",
+    "Noticia diaria (Ingles): Practicing simple affirmative and negative sentences early speeds up conversation.",
+    "Noticia diaria (Ingles): Fifteen focused minutes every day outperforms cramming once a week.",
+    "Noticia diaria (Ingles): Paying attention to context helps you choose the exact phrase native speakers expect.",
+    "Noticia diaria (Ingles): Mastering numbers early helps with time, prices, dates, and daily communication.",
+    "Noticia diaria (Ingles): Advancing step by step from Easy to Expert builds solid long-term fluency.",
 ]
 
 TACTICAS_DIARIAS = [
-    "Táctica del día: Completa las 5 clases de la rama actual antes de abrir la hoja de examen.",
-    "Táctica del día: Si eliges saltar Easy, concentra tu atención en cada punto porque necesitas mínimo 10/20.",
-    "Táctica del día: En cada pregunta del examen verifica qué estructura pertenece realmente al tema estudiado.",
-    "Táctica del día: Usa los números en voz alta después de estudiar la Rama 3 de Easy.",
-    "Táctica del día: Analiza cada punto perdido en el desglose de calificación para subir a 20/20.",
-    "Táctica del día: Cambia de idioma en el menú superior para comparar cómo se expresa la misma idea.",
-    "Táctica del día: Alterna entre ramas teóricas y los 10 juegos adaptados para fijar memoria rápida.",
-    "Táctica del día: No saltes preguntas de escritura; escribir fija ortografía y orden gramatical.",
-    "Táctica del día: Mantén coherencia temática: cada rama trabaja un solo bloque sin mezclar conceptos.",
-    "Táctica del día: Repasa el esquema de 3 pasos al final de cada rama antes de evaluarte.",
+    "Tactica del dia: Completa las 5 clases de la rama actual antes de abrir la hoja de examen.",
+    "Tactica del dia: Si eliges saltar Easy, concentra tu atencion en cada punto porque necesitas minimo 10/20.",
+    "Tactica del dia: En cada pregunta del examen verifica que estructura pertenece realmente al tema estudiado.",
+    "Tactica del dia: Usa los numeros en voz alta despues de estudiar la Rama 3 de Easy.",
+    "Tactica del dia: Analiza cada punto perdido en el desglose de calificacion para subir a 20/20.",
+    "Tactica del dia: Cambia de idioma en el menu superior para comparar como se expresa la misma idea.",
+    "Tactica del dia: Alterna entre ramas teoricas y los 10 juegos adaptados para fijar memoria rapida.",
+    "Tactica del dia: No saltes preguntas de escritura; escribir fija ortografia y orden gramatical.",
+    "Tactica del dia: Manten coherencia tematica: cada rama trabaja un solo bloque sin mezclar conceptos.",
+    "Tactica del dia: Repasa el esquema de 3 pasos al final de cada rama antes de evaluarte.",
 ]
 
 TRUCOS_DIARIOS = [
-    "Truco del día: Asocia cada expresión nueva con una situación real en lugar de traducir palabra por palabra.",
-    "Truco del día: En Verdadero o Falso, comprueba si la frase corresponde exactamente al tema de esa rama.",
-    "Truco del día: Cuando escribas tu respuesta en el examen, revisa que no falten letras clave.",
-    "Truco del día: Usa el botón PREGUNTAR para dudas de gramática y BUSCAR para significado y ejemplo.",
-    "Truco del día: Practica la Rama 3 de Easy hasta dominar los números sin dudar.",
-    "Truco del día: Si sacas de 0 a 9 puntos, vuelve a leer las clases de esa rama y presenta de nuevo.",
-    "Truco del día: Observa el contraste entre la expresión principal y la alternativa en cada rama.",
-    "Truco del día: En los niveles Hard y Expert/Nativo, fíjate en los matices y expresiones idiomáticas.",
-    "Truco del día: Usa los juegos diarios como calentamiento rápido antes de presentar una evaluación.",
-    "Truco del día: Mantén una meta clara: aprobar cada rama con 10/20 o más hasta llegar a Expert/Nativo.",
+    "Truco del dia: Asocia cada expresion nueva con una situacion real en lugar de traducir palabra por palabra.",
+    "Truco del dia: En Verdadero o Falso, comprueba si la frase corresponde exactamente al tema de esa rama.",
+    "Truco del dia: Cuando escribas tu respuesta en el examen, revisa que no falten letras clave.",
+    "Truco del dia: Usa el boton PREGUNTAR para dudas de gramatica y BUSCAR para significado y ejemplo.",
+    "Truco del dia: Practica la Rama 3 de Easy hasta dominar los numeros sin dudar.",
+    "Truco del dia: Si sacas de 0 a 9 puntos, vuelve a leer las clases de esa rama y presenta de nuevo.",
+    "Truco del dia: Observa el contraste entre la expresion principal y la alternativa en cada rama.",
+    "Truco del dia: En los niveles Hard y Expert/Nativo, fijate en los matices y expresiones idiomaticas.",
+    "Truco del dia: Usa los juegos diarios como calentamiento rapido antes de presentar una evaluacion.",
+    "Truco del dia: Manten una meta clara: aprobar cada rama con 10/20 o mas hasta llegar a Expert/Nativo.",
 ]
 
 def construir_preguntas_examen(idioma, tema, principal, contraste):
@@ -770,22 +770,22 @@ def construir_preguntas_examen(idioma, tema, principal, contraste):
             "enunciado": f"Completa el bloque correspondiente a '{tema}' en {idioma}: [ __________ ]",
             "opciones": [principal, contraste],
             "correcta": principal,
-            "explicacion": f"La expresión correcta para completar este bloque es '{principal}'.",
+            "explicacion": f"La expresion correcta para completar este bloque es '{principal}'.",
         },
         {
             "numero": 3,
             "tipo": "identificar",
             "puntos": 4,
-            "enunciado": f"Identifica la expresión correcta de '{tema}' en {idioma}:",
+            "enunciado": f"Identifica la expresion correcta de '{tema}' en {idioma}:",
             "opciones": [principal, contraste, "Ninguna de las anteriores"],
             "correcta": principal,
-            "explicacion": f"'{principal}' identifica correctamente el patrón de '{tema}'.",
+            "explicacion": f"'{principal}' identifica correctamente el patron de '{tema}'.",
         },
         {
             "numero": 4,
             "tipo": "escribir",
             "puntos": 4,
-            "enunciado": f"Escribe la expresión clave trabajada en '{tema}' ({idioma}):",
+            "enunciado": f"Escribe la expresion clave trabajada en '{tema}' ({idioma}):",
             "aceptadas": [principal.lower(), base_corta],
             "muestra": principal,
             "explicacion": f"Respuesta esperada: {principal}.",
@@ -794,7 +794,7 @@ def construir_preguntas_examen(idioma, tema, principal, contraste):
             "numero": 5,
             "tipo": "verdadero_falso",
             "puntos": 4,
-            "enunciado": f"Verdadero o Falso: '{contraste}' es idéntico en función a '{principal}'.",
+            "enunciado": f"Verdadero o Falso: '{contraste}' es identico en funcion a '{principal}'.",
             "opciones": ["Verdadero", "Falso"],
             "correcta": "Falso",
             "explicacion": f"'{principal}' y '{contraste}' cumplen funciones distintas en {idioma}.",
@@ -803,11 +803,11 @@ def construir_preguntas_examen(idioma, tema, principal, contraste):
 
 def construir_cinco_clases(idioma, nivel, subtema, principal, contraste):
     return [
-        f"Clase 1 ({nivel} · {subtema}): Identifica la expresión central '{principal}' en {idioma} y su sentido exacto.",
-        f"Clase 2 (Diferenciación): Compara '{principal}' con '{contraste}' para distinguir cuándo usar cada una.",
-        f"Clase 3 (Aplicación real): Ubica '{principal}' dentro de una situación cotidiana en {idioma}.",
-        f"Clase 4 (Control de errores): Mantén el foco solo en '{subtema}' sin mezclar temas ajenos.",
-        f"Clase 5 (Cierre de rama): Repasa '{principal}' antes de presentar la evaluación sobre 20 puntos.",
+        f"Clase 1 ({nivel} · {subtema}): Identifica la expresion central '{principal}' en {idioma} y su sentido exacto.",
+        f"Clase 2 (Diferenciacion): Compara '{principal}' con '{contraste}' para distinguir cuando usar cada una.",
+        f"Clase 3 (Aplicacion real): Ubica '{principal}' dentro de una situacion cotidiana en {idioma}.",
+        f"Clase 4 (Control de errores): Manten el foco solo en '{subtema}' sin mezclar temas ajenos.",
+        f"Clase 5 (Cierre de rama): Repasa '{principal}' antes de presentar la evaluacion sobre 20 puntos.",
     ]
 
 def compilar_idioma(cfg):
@@ -824,30 +824,30 @@ def compilar_idioma(cfg):
         },
         {
             "numero": 2,
-            "titulo": "Rama 2 · Saludos y Cortesía",
-            "subtema": "Saludos y cortesía",
+            "titulo": "Rama 2 · Saludos y Cortesia",
+            "subtema": "Saludos y cortesia",
             "principal": cfg["saludo"],
             "contraste": cfg["gracias"],
-            "esquema": f"[Easy · Rama 2] -> [Saludo: {cfg['saludo']}] -> [Cortesía: {cfg['gracias']}]",
-            "ejemplos": [f"Saludo: {cfg['saludo']}", f"Cortesía: {cfg['gracias']}"],
+            "esquema": f"[Easy · Rama 2] -> [Saludo: {cfg['saludo']}] -> [Cortesia: {cfg['gracias']}]",
+            "ejemplos": [f"Saludo: {cfg['saludo']}", f"Cortesia: {cfg['gracias']}"],
         },
         {
             "numero": 3,
-            "titulo": "Rama 3 · Números",
-            "subtema": "Números",
+            "titulo": "Rama 3 · Numeros",
+            "subtema": "Numeros",
             "principal": cfg["numeros"],
             "contraste": cfg["identidad"],
-            "esquema": f"[Easy · Rama 3] -> [Números: {cfg['numeros']}]",
-            "ejemplos": [f"Números: {cfg['numeros']}", f"Referencia: {cfg['identidad']}"],
+            "esquema": f"[Easy · Rama 3] -> [Numeros: {cfg['numeros']}]",
+            "ejemplos": [f"Numeros: {cfg['numeros']}", f"Referencia: {cfg['identidad']}"],
         },
         {
             "numero": 4,
-            "titulo": "Rama 4 · Saludo de la Mañana",
-            "subtema": "Saludo de la mañana",
+            "titulo": "Rama 4 · Saludo de la Manana",
+            "subtema": "Saludo de la manana",
             "principal": cfg["manana"],
             "contraste": cfg["saludo"],
-            "esquema": f"[Easy · Rama 4] -> [Mañana: {cfg['manana']}]",
-            "ejemplos": [f"Mañana: {cfg['manana']}", f"Saludo general: {cfg['saludo']}"],
+            "esquema": f"[Easy · Rama 4] -> [Manana: {cfg['manana']}]",
+            "ejemplos": [f"Manana: {cfg['manana']}", f"Saludo general: {cfg['saludo']}"],
         },
         {
             "numero": 5,
@@ -860,12 +860,12 @@ def compilar_idioma(cfg):
         },
         {
             "numero": 6,
-            "titulo": "Rama 6 · Estar Listo y Disposición",
-            "subtema": "Estar listo y disposición",
+            "titulo": "Rama 6 · Estar Listo y Disposicion",
+            "subtema": "Estar listo y disposicion",
             "principal": cfg["listo"],
             "contraste": cfg["frase"],
             "esquema": f"[Easy · Rama 6] -> [Listo: {cfg['listo']}]",
-            "ejemplos": [f"Listo: {cfg['listo']}", f"Práctica: {cfg['frase']}"],
+            "ejemplos": [f"Listo: {cfg['listo']}", f"Practica: {cfg['frase']}"],
         },
         {
             "numero": 7,
@@ -873,8 +873,8 @@ def compilar_idioma(cfg):
             "subtema": "Oraciones cotidianas",
             "principal": cfg["frase"],
             "contraste": cfg["numeros"],
-            "esquema": f"[Easy · Rama 7] -> [Oración: {cfg['frase']}]",
-            "ejemplos": [f"Oración: {cfg['frase']}", f"Números: {cfg['numeros']}"],
+            "esquema": f"[Easy · Rama 7] -> [Oracion: {cfg['frase']}]",
+            "ejemplos": [f"Oracion: {cfg['frase']}", f"Numeros: {cfg['numeros']}"],
         },
     ]
 
@@ -899,8 +899,8 @@ def compilar_idioma(cfg):
         },
         {
             "numero": 3,
-            "titulo": "Rama 3 · Acción en Curso",
-            "subtema": "Acción en curso",
+            "titulo": "Rama 3 · Accion en Curso",
+            "subtema": "Accion en curso",
             "principal": cfg["continuo"],
             "contraste": cfg["frase"],
             "esquema": f"[Medium · Rama 3] -> [Continuo: {cfg['continuo']}]",
@@ -913,7 +913,7 @@ def compilar_idioma(cfg):
             "principal": cfg["comparativo"],
             "contraste": cfg["numeros"],
             "esquema": f"[Medium · Rama 4] -> [Comparativo: {cfg['comparativo']}]",
-            "ejemplos": [f"Comparación: {cfg['comparativo']}", f"Conteo: {cfg['numeros']}"],
+            "ejemplos": [f"Comparacion: {cfg['comparativo']}", f"Conteo: {cfg['numeros']}"],
         },
         {
             "numero": 5,
@@ -922,7 +922,7 @@ def compilar_idioma(cfg):
             "principal": cfg["modal"],
             "contraste": cfg["listo"],
             "esquema": f"[Medium · Rama 5] -> [Modal: {cfg['modal']}]",
-            "ejemplos": [f"Modal: {cfg['modal']}", f"Disposición: {cfg['listo']}"],
+            "ejemplos": [f"Modal: {cfg['modal']}", f"Disposicion: {cfg['listo']}"],
         },
     ]
 
@@ -1010,15 +1010,15 @@ def compilar_idioma(cfg):
 
     juegos_adaptados = [
         {"n": 1, "t": "Saludo", "r": f"Elige el saludo en {nombre}:", "ops": [cfg["saludo"], cfg["gracias"], cfg["numeros"]], "ok": cfg["saludo"]},
-        {"n": 2, "t": "Gracias", "r": f"Elige cómo agradecer en {nombre}:", "ops": [cfg["gracias"], cfg["saludo"], cfg["manana"]], "ok": cfg["gracias"]},
-        {"n": 3, "t": "Números", "r": f"Selecciona los números en {nombre}:", "ops": [cfg["numeros"], cfg["saludo"], cfg["pasado"]], "ok": cfg["numeros"]},
-        {"n": 4, "t": "Mañana", "r": f"Elige el saludo de mañana en {nombre}:", "ops": [cfg["manana"], cfg["gracias"], cfg["futuro"]], "ok": cfg["manana"]},
-        {"n": 5, "t": "Listo", "r": f"Elige cómo indicar que estás listo en {nombre}:", "ops": [cfg["listo"], cfg["modismo"], cfg["manana"]], "ok": cfg["listo"]},
+        {"n": 2, "t": "Gracias", "r": f"Elige como agradecer en {nombre}:", "ops": [cfg["gracias"], cfg["saludo"], cfg["manana"]], "ok": cfg["gracias"]},
+        {"n": 3, "t": "Numeros", "r": f"Selecciona los numeros en {nombre}:", "ops": [cfg["numeros"], cfg["saludo"], cfg["pasado"]], "ok": cfg["numeros"]},
+        {"n": 4, "t": "Manana", "r": f"Elige el saludo de manana en {nombre}:", "ops": [cfg["manana"], cfg["gracias"], cfg["futuro"]], "ok": cfg["manana"]},
+        {"n": 5, "t": "Listo", "r": f"Elige como indicar que estas listo en {nombre}:", "ops": [cfg["listo"], cfg["modismo"], cfg["manana"]], "ok": cfg["listo"]},
         {"n": 6, "t": "Identidad", "r": f"Elige la frase de identidad en {nombre}:", "ops": [cfg["identidad"], cfg["gracias"], cfg["pasiva"]], "ok": cfg["identidad"]},
         {"n": 7, "t": "Frase Diaria", "r": f"Selecciona la frase diaria en {nombre}:", "ops": [cfg["frase"], cfg["numeros"], cfg["saludo"]], "ok": cfg["frase"]},
-        {"n": 8, "t": "Futuro", "r": f"Elige la expresión de futuro en {nombre}:", "ops": [cfg["futuro"], cfg["pasado"], cfg["saludo"]], "ok": cfg["futuro"]},
+        {"n": 8, "t": "Futuro", "r": f"Elige la expresion de futuro en {nombre}:", "ops": [cfg["futuro"], cfg["pasado"], cfg["saludo"]], "ok": cfg["futuro"]},
         {"n": 9, "t": "Condicional", "r": f"Selecciona la estructura condicional en {nombre}:", "ops": [cfg["condicional"], cfg["gracias"], cfg["numeros"]], "ok": cfg["condicional"]},
-        {"n": 10, "t": "Nativo", "r": f"Elige la expresión nativa en {nombre}:", "ops": [cfg["nativo"], cfg["manana"], cfg["identidad"]], "ok": cfg["nativo"]},
+        {"n": 10, "t": "Nativo", "r": f"Elige la expresion nativa en {nombre}:", "ops": [cfg["nativo"], cfg["manana"], cfg["identidad"]], "ok": cfg["nativo"]},
     ]
 
     return {
@@ -1044,9 +1044,9 @@ def responder_consulta_idioma(idioma, pregunta, modo="profesor"):
 
     if CLAVE_GEMINI:
         instruccion = (
-            f"Actúa como profesor experto de {idioma}. Responde de manera clara, estructurada y directa sobre: {texto}"
+            f"Actua como profesor experto de {idioma}. Responde de manera clara, estructurada y directa sobre: {texto}"
             if modo_ok == "profesor"
-            else f"Actúa como buscador de {idioma}. Explica '{texto}' con su uso y un ejemplo real en {idioma}."
+            else f"Actua como buscador de {idioma}. Explica '{texto}' con su uso y un ejemplo real en {idioma}."
         )
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_GEMINI}:generateContent?key={CLAVE_GEMINI}"
         cuerpo = json.dumps({
@@ -1081,12 +1081,12 @@ def responder_consulta_idioma(idioma, pregunta, modo="profesor"):
         return (
             f"[BUSCADOR · {idioma.upper()}]\n"
             f"Consulta: {texto_limpio}\n"
-            f"Base del idioma -> Saludo: '{curso['saludo']}' | Números: '{curso['numeros']}' | Frase: '{curso['frase']}'."
+            f"Base del idioma -> Saludo: '{curso['saludo']}' | Numeros: '{curso['numeros']}' | Frase: '{curso['frase']}'."
         )
     return (
         f"[PROFESOR · {idioma.upper()}]\n"
         f"Duda: {texto_limpio}\n"
-        f"Explicación: En {idioma}, trabaja esta idea apoyándote en estructuras reales como '{curso['frase']}' y avanza rama por rama."
+        f"Explicacion: En {idioma}, trabaja esta idea apoyandote en estructuras reales como '{curso['frase']}' y avanza rama por rama."
     )
 
 HTML_PAGINA = """<!doctype html>
@@ -1129,7 +1129,8 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 <div id="viewBienvenida" class="modal-screen">
     <div class="bienvenida-caja">BIENVENIDO A C-PRE "LENGUAJES"</div>
     <div class="creacion-sub">Creaciones de Celso</div>
-    <div id="lblCuenta" style="font-size:13px;color:#a1a1aa">Iniciando...</div>
+    <div id="lblCuenta" style="font-size:13px;color:#a1a1aa">Entrando...</div>
+    <button type="button" onclick="saltarBienvenidaYAbrir()" style="max-width:300px;margin-top:14px">ENTRAR AHORA</button>
 </div>
 
 <div id="viewDecisionEasy" class="modal-screen hidden-view">
@@ -1216,7 +1217,8 @@ input[type="text"] { width: 100%; padding: 11px 12px; background: #09090b; color
 function leerJsonSeguro(idElemento, respaldo) {
     try {
         var el = document.getElementById(idElemento);
-        return el ? JSON.parse(el.textContent) : respaldo;
+        if (!el || !el.textContent || el.textContent.indexOf("__") === 0) return respaldo;
+        return JSON.parse(el.textContent);
     } catch (e) {
         return respaldo;
     }
@@ -1227,10 +1229,10 @@ var NOTICIAS = leerJsonSeguro("datosNoticiasJson", []);
 var TACTICAS = leerJsonSeguro("datosTacticasJson", []);
 var TRUCOS = leerJsonSeguro("datosTrucosJson", []);
 var NIVELES = leerJsonSeguro("datosNivelesJson", ["Easy", "Medium", "Hard", "Expert/Nativo"]);
-var ORDINALES = leerJsonSeguro("datosOrdinalesJson", {});
+var ORDINALES = leerJsonSeguro("datosOrdinalesJson", {"1":"primera","2":"segunda","3":"tercera","4":"cuarta","5":"quinta","6":"sexta","7":"septima"});
 
 var estado = {
-    idioma: "Inglés",
+    idioma: Object.keys(CURSOS).length ? Object.keys(CURSOS)[0] : "Inglés",
     nivelIdx: 0,
     ramaIdx: 0,
     juegoIdx: 0,
@@ -1238,305 +1240,42 @@ var estado = {
     ultimaNota: 0
 };
 
+var timerBienvenida = null;
+
+function saltarBienvenidaYAbrir() {
+    if (timerBienvenida) {
+        clearInterval(timerBienvenida);
+        timerBienvenida = null;
+    }
+    var bienvenida = document.getElementById("viewBienvenida");
+    var decision = document.getElementById("viewDecisionEasy");
+    if (bienvenida) bienvenida.classList.add("hidden-view");
+    if (decision) decision.classList.remove("hidden-view");
+}
+
 function iniciarBienvenidaDirecta() {
     var bienvenida = document.getElementById("viewBienvenida");
+    var lbl = document.getElementById("lblCuenta");
+    if (!bienvenida) return;
     var seg = 2;
-    var actualizarCuenta = function() {
-        document.getElementById("lblCuenta").textContent = "Entrando... " + seg + "s";
-    };
-    actualizarCuenta();
+    if (lbl) lbl.textContent = "Entrando... " + seg + "s";
 
-    var timer = setInterval(function() {
+    timerBienvenida = setInterval(function() {
         seg -= 1;
         if (seg > 0) {
-            actualizarCuenta();
+            if (lbl) lbl.textContent = "Entrando... " + seg + "s";
         } else {
-            clearInterval(timer);
-            bienvenida.classList.add("hidden-view");
-            document.getElementById("viewDecisionEasy").classList.remove("hidden-view");
+            saltarBienvenidaYAbrir();
         }
     }, 1000);
 }
 
 function cargarSelectorIdiomas() {
     var sel = document.getElementById("selectIdioma");
+    if (!sel) return;
     sel.innerHTML = "";
-    Object.keys(CURSOS).forEach(function(nombre) {
-        var opt = document.createElement("option");
-        opt.value = nombre;
-        opt.textContent = nombre;
-        if (nombre === estado.idioma) opt.selected = true;
-        sel.appendChild(opt);
-    });
-}
-
-function mostrarFelicitacion(mensaje) {
-    var el = document.getElementById("bannerFelicitacion");
-    el.textContent = mensaje;
-    el.classList.remove("hidden-view");
-}
-
-function elegirModoEasyNormal() {
-    estado.nivelIdx = 0;
-    estado.ramaIdx = 0;
-    document.getElementById("viewDecisionEasy").classList.add("hidden-view");
-    renderizarApp();
-}
-
-function elegirSaltarEasy() {
-    estado.nivelIdx = 0;
-    estado.ramaIdx = 0;
-    document.getElementById("viewDecisionEasy").classList.add("hidden-view");
-    renderizarApp();
-    iniciarExamen(true);
-}
-
-function alCambiarIdioma() {
-    estado.idioma = document.getElementById("selectIdioma").value;
-    estado.ramaIdx = 0;
-    estado.juegoIdx = 0;
-    renderizarApp();
-}
-
-function renderizarDiarios() {
-    var hoy = new Date();
-    var inicioAno = new Date(hoy.getFullYear(), 0, 0);
-    var diaDelAno = Math.floor((hoy - inicioAno) / 86400000);
-    document.getElementById("metaDia").textContent = hoy.toLocaleDateString("es-VE");
-    if (NOTICIAS.length) document.getElementById("boxNoticia").textContent = NOTICIAS[diaDelAno % NOTICIAS.length];
-    if (TACTICAS.length) document.getElementById("boxTactica").textContent = TACTICAS[diaDelAno % TACTICAS.length];
-    if (TRUCOS.length) document.getElementById("boxTruco").textContent = TRUCOS[diaDelAno % TRUCOS.length];
-}
-
-function renderizarApp() {
-    var curso = CURSOS[estado.idioma];
-    if (!curso) return;
-    var nombreNivel = NIVELES[estado.nivelIdx];
-    var ramas = curso.niveles[nombreNivel];
-    var rama = ramas[estado.ramaIdx % ramas.length];
-
-    document.getElementById("metaNivel").textContent = nombreNivel;
-    document.getElementById("metaRama").textContent = rama.numero + "/" + ramas.length;
-    document.getElementById("metaNota").textContent = estado.ultimaNota + "/20";
-    document.getElementById("tituloRamaActual").textContent = rama.titulo;
-    document.getElementById("subtemaRamaActual").textContent = "Tema de la rama: " + rama.subtema;
-
-    var clasesCont = document.getElementById("contenedorClases");
-    clasesCont.innerHTML = "";
-    rama.clases.forEach(function(lineaClase) {
-        var div = document.createElement("div");
-        div.className = "clase-card";
-        div.textContent = lineaClase;
-        clasesCont.appendChild(div);
-    });
-
-    document.getElementById("esquemaRamaActual").textContent = "ESQUEMA:\n" + rama.esquema;
-    document.getElementById("ejemplosRamaActual").textContent = "EJEMPLOS:\n• " + rama.ejemplos.join("\n• ");
-
-    document.getElementById("panelExamen").classList.add("hidden-view");
-    document.getElementById("panelPreparacion").classList.remove("hidden-view");
-
-    renderizarDiarios();
-    renderizarJuego();
-}
-
-function iniciarExamen(esSaltoEasy) {
-    var nombreNivel = NIVELES[estado.nivelIdx];
-    var ramas = CURSOS[estado.idioma].niveles[nombreNivel];
-    var rama = ramas[estado.ramaIdx % ramas.length];
-
-    document.getElementById("panelPreparacion").classList.add("hidden-view");
-    var panelEx = document.getElementById("panelExamen");
-    panelEx.classList.remove("hidden-view");
-
-    var html = '<div class="examen-hoja">' +
-        '<div class="card-meta">' +
-        '<span>HOJA DE EXAMEN · ' + estado.idioma.toUpperCase() + '</span>' +
-        '<span>TOTAL: 20 PTS</span>' +
-        '</div>' +
-        '<p style="font-weight:700;color:#ffffff">' + (esSaltoEasy ? "Evaluación para saltar Easy a Medium (aprueba desde 10/20)" : rama.titulo + " — Aprueba desde 10/20") + '</p>';
-
-    rama.eval.forEach(function(preg, idx) {
-        var tipoEtiqueta = preg.tipo.replace("_", " ");
-        html += '<div class="panel-nota"><strong>Pregunta ' + preg.numero + ' (' + preg.puntos + ' pts · ' + tipoEtiqueta + '):</strong><br>' + preg.enunciado + '<br>';
-        if (preg.tipo === "escribir") {
-            html += '<input type="text" id="resp_preg_' + idx + '" placeholder="Escribe tu respuesta...">';
-        } else {
-            preg.opciones.forEach(function(op, j) {
-                var seguro = op.replace(/"/g, "&quot;");
-                html += '<label style="display:block;margin:6px 0;cursor:pointer"><input type="radio" name="radio_preg_' + idx + '" value="' + seguro + '" ' + (j === 0 ? "checked" : "") + '> ' + op + '</label>';
-            });
-        }
-        html += '</div>';
-    });
-
-    html += '<button type="button" onclick="calificarExamen(' + (esSaltoEasy ? "true" : "false") + ')">ENTREGAR EVALUACIÓN</button></div>';
-    panelEx.innerHTML = html;
-}
-
-function calificarExamen(esSaltoEasy) {
-    var nombreNivel = NIVELES[estado.nivelIdx];
-    var ramas = CURSOS[estado.idioma].niveles[nombreNivel];
-    var rama = ramas[estado.ramaIdx % ramas.length];
-
-    var puntaje = 0;
-    var desglose = "";
-
-    rama.eval.forEach(function(preg, idx) {
-        var acerto = false;
-        if (preg.tipo === "escribir") {
-            var elem = document.getElementById("resp_preg_" + idx);
-            var val = (elem ? elem.value : "").trim().toLowerCase();
-            acerto = preg.aceptadas.some(function(acc) {
-                return val === acc || (acc.length > 3 && val.indexOf(acc) !== -1);
-            });
-        } else {
-            var marcado = document.querySelector('input[name="radio_preg_' + idx + '"]:checked');
-            acerto = Boolean(marcado && marcado.value === preg.correcta);
-        }
-
-        if (acerto) {
-            puntaje += preg.puntos;
-            desglose += "• Pregunta " + preg.numero + ": +" + preg.puntos + " pts (Aprobada)\n";
-        } else {
-            desglose += "• Pregunta " + preg.numero + ": 0 pts (-" + preg.puntos + " pts) -> " + preg.explicacion + "\n";
-        }
-    });
-
-    estado.ultimaNota = puntaje;
-    document.getElementById("metaNota").textContent = puntaje + "/20";
-    var porcentaje = Math.max(0, Math.min(100, Math.round((puntaje / 20) * 100)));
-    var aprobo = puntaje >= 10;
-
-    var cierreHtml = "";
-    if (esSaltoEasy) {
-        if (aprobo) {
-            estado.nivelIdx = 1;
-            estado.ramaIdx = 0;
-            mostrarFelicitacion("Felicitaciones, nuevo nivel: pasaste a Medium con " + puntaje + "/20.");
-            cierreHtml = '<button type="button" onclick="renderizarApp()">CONTINUAR EN MEDIUM</button>';
-        } else {
-            estado.nivelIdx = 0;
-            estado.ramaIdx = 0;
-            cierreHtml = '<p style="font-weight:700;color:#ffffff">No alcanzaste los 10/20 (' + puntaje + '/20). Debes ver las 7 ramas del modo Easy desde la Rama 1.</p><button type="button" onclick="renderizarApp()">IR A RAMA 1 DE EASY</button>';
-        }
-    } else if (aprobo) {
-        if (estado.ramaIdx + 1 < ramas.length) {
-            estado.ramaIdx += 1;
-            var ord = ORDINALES[String(estado.ramaIdx + 1)] || (estado.ramaIdx + 1) + "a";
-            mostrarFelicitacion("Felicitaciones, " + ord + " rama del modo " + nombreNivel + " (Nota: " + puntaje + "/20).");
-            cierreHtml = '<button type="button" onclick="renderizarApp()">PASAR A LA SIGUIENTE RAMA</button>';
-        } else if (estado.nivelIdx + 1 < NIVELES.length) {
-            estado.nivelIdx += 1;
-            estado.ramaIdx = 0;
-            mostrarFelicitacion("Felicitaciones, nuevo nivel: " + NIVELES[estado.nivelIdx] + " (Nota: " + puntaje + "/20).");
-            cierreHtml = '<button type="button" onclick="renderizarApp()">ENTRAR AL NUEVO NIVEL</button>';
-        } else {
-            mostrarFelicitacion("Felicitaciones, completaste " + nombreNivel + " con " + puntaje + "/20.");
-            cierreHtml = '<button type="button" onclick="estado.ramaIdx=0;renderizarApp()">REINICIAR RAMAS DEL NIVEL</button>';
-        }
-    } else {
-        cierreHtml = '<p style="font-weight:700;color:#ffffff">Reprobaste con ' + puntaje + '/20 (se aprueba desde 10/20). Repasa las clases de esta rama e inténtalo de nuevo.</p><button type="button" class="sec" onclick="iniciarExamen(false)">REPETIR EVALUACIÓN</button>';
-    }
-
-    document.getElementById("panelExamen").innerHTML = '<div class="examen-hoja">' +
-        '<h3>CALIFICACIÓN: ' + puntaje + '/20 (' + (aprobo ? "APROBADO" : "REPROBADO") + ')</h3>' +
-        '<div class="barra-fondo"><div class="barra-relleno" style="width:' + porcentaje + '%"></div></div>' +
-        '<div class="panel-nota">' + desglose + '</div>' +
-        cierreHtml +
-        '</div>';
-}
-
-function renderizarJuego() {
-    var juegos = CURSOS[estado.idioma].juegos;
-    var actual = juegos[estado.juegoIdx % juegos.length];
-
-    document.getElementById("tituloJuegoActual").textContent = "JUEGO " + actual.n + "/10 · " + actual.t;
-    document.getElementById("enunciadoJuegoActual").textContent = actual.r;
-
-    var contOps = document.getElementById("opcionesJuegoActual");
-    contOps.innerHTML = "";
-    actual.ops.forEach(function(op) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "sec";
-        btn.textContent = op;
-        btn.onclick = function() {
-            if (op === actual.ok) {
-                estado.puntosJuego += 10;
-                document.getElementById("metaJuegoPts").textContent = "PTS: " + estado.puntosJuego;
-                document.getElementById("feedbackJuegoActual").textContent = "¡Correcto! +10 pts.";
-            } else {
-                document.getElementById("feedbackJuegoActual").textContent = "Incorrecto. Respuesta correcta: " + actual.ok + ".";
-            }
-            estado.juegoIdx += 1;
-            renderizarJuego();
-        };
-        contOps.appendChild(btn);
-    });
-}
-
-async function enviarConsultaLibre(modo) {
-    var texto = document.getElementById("inputPreguntaLibre").value.trim();
-    if (!texto) return;
-    document.getElementById("metaModoConsulta").textContent = "MODO: " + modo.toUpperCase();
-    document.getElementById("respuestaConsultaLibre").textContent = "Consultando...";
-    try {
-        var res = await fetch("/api/consulta", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                idioma: estado.idioma,
-                texto: texto,
-                modo: modo
-            })
-        });
-        var data = await res.json();
-        document.getElementById("respuestaConsultaLibre").textContent = data.respuesta;
-    } catch (err) {
-        document.getElementById("respuestaConsultaLibre").textContent = "Error al consultar.";
-    }
-}
-
-cargarSelectorIdiomas();
-renderizarApp();
-iniciarBienvenidaDirecta();
-</script>
-</body>
-</html>
-"""
-
-@app.route("/")
-def index():
-    cursos_serializados = json.dumps(BASE_CURSOS, ensure_ascii=False).replace("</", "<\\/")
-    noticias_serializadas = json.dumps(NOTICIAS_DIARIAS, ensure_ascii=False).replace("</", "<\\/")
-    tacticas_serializadas = json.dumps(TACTICAS_DIARIAS, ensure_ascii=False).replace("</", "<\\/")
-    trucos_serializadas = json.dumps(TRUCOS_DIARIOS, ensure_ascii=False).replace("</", "<\\/")
-    niveles_serializados = json.dumps(NIVELES_SISTEMA, ensure_ascii=False).replace("</", "<\\/")
-    ordinales_serializados = json.dumps(ORDINALES_RAMAS, ensure_ascii=False).replace("</", "<\\/")
-
-    return (
-        HTML_PAGINA
-        .replace("__CURSOS_JSON__", cursos_serializados)
-        .replace("__NOTICIAS_JSON__", noticias_serializadas)
-        .replace("__TACTICAS_JSON__", tacticas_serializadas)
-        .replace("__TRUCOS_JSON__", trucos_serializadas)
-        .replace("__NIVELES_JSON__", niveles_serializados)
-        .replace("__ORDINALES_JSON__", ordinales_serializados)
-    )
-
-@app.route("/api/consulta", methods=["POST"])
-def api_consulta():
-    datos = request.get_json(silent=True) or {}
-    respuesta = responder_consulta_idioma(
-        datos.get("idioma"),
-        datos.get("texto"),
-        datos.get("modo"),
-    )
-    return jsonify({
-        "respuesta": respuesta,
-        "timestamp": datetime.utcnow().isoformat(),
-    })
-
-if __name__ == "__main__":
-    app.run(host=HOST_SERVIDOR, port=PUERTO_SERVIDOR)
+    var nombres = Object.keys(CURSOS);
+    if (!nombres.length) {
+        var optDef = document.createElement("option");
+        optDef.value = "Inglés";
+        optDef.
